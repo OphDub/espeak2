@@ -53,6 +53,10 @@ export default class App extends React.Component {
     this.setState({ showAlert: false });
   }
 
+  handlePoints = () => {
+    console.log('user points', this.state.user.points);
+  }
+
   handleLogin = async (email, password) => {
     this.setState({ loading: true });
 
@@ -112,7 +116,10 @@ export default class App extends React.Component {
   showCondition = () => {
     if (this.state.user) {
       return <RootNav
-                screenProps={{userEmail: this.state.user}}
+                screenProps={{
+                  userEmail: this.state.user,
+                  handlePoints: this.handlePoints
+                }}
               />
     } else {
       return (
