@@ -5,6 +5,7 @@ import {
   Platform,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View
 } from 'react-native';
 
@@ -37,12 +38,14 @@ export default class Decks extends Component<Props> {
         <FlatList
           data={this.state.decks}
           renderItem={({ item }) => (
-            <Text 
-              onPress={() => this.navigateToCards(item)}
-              value={item.id}
-              style={styles.item} >
-              {item.category}
-            </Text>
+              <TouchableOpacity 
+                onPress={() => this.navigateToCards(item)}
+                value={item.id}
+                style={styles.deck} >
+                <Text style={styles.deckText}>
+                  {item.category}
+                </Text>             
+              </TouchableOpacity>
             )
           }
           keyExtractor={item => item.category}
@@ -56,10 +59,23 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'purple',
   },
-  item: {
-    fontSize: 40,
+  deckCont: {
+    width: 150,
+    backgroundColor: 'magenta',
+  },
+  deck: {
+    backgroundColor: '#3AAFB9',
+    padding: 5,
+    borderRadius: 8,
+    margin: 10,
+    shadowColor: '#979797',
+    shadowOpacity: 0.7,
+    shadowOffset: { width: 2, height: 2 },
+    shadowRadius: 4,
+  },
+  deckText: {
+    fontSize: 20,
     color: "white",
     textAlign: 'center',
     margin: 10,
