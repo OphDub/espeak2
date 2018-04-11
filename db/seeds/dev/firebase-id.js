@@ -51,7 +51,7 @@ exports.seed = function(knex, Promise) {
       mockDecks.forEach(stack => {
         stackPromises.push(createDeck(knex, stack));
       })
-      
+
       return Promise.all(stackPromises);
     })
      .then(stacks => {
@@ -60,7 +60,8 @@ exports.seed = function(knex, Promise) {
           name: 'jon snow',
           email: 'jon@knownothing.com',
           stack_id: stacks[0][0][0],
-          points: 0 
+          points: 0,
+          firebase_id: 'KZ5xIaj7eQOOP4fD3sGXbXYIIN22'
         }
       )
     })

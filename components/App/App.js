@@ -58,10 +58,27 @@ export default class App extends React.Component {
 
     try {
       const user = await auth.signInWithEmailAndPassword(email, password);
-      this.setState({ user: user.email, loading: false });
-      console.log('User signed in', user);
+
+      await this.beLogin(user.uid);
     } catch (error) {
       this.setState({ showAlert:true, alertMsg:error.message });
+    }
+  }
+
+  beLogin = async (userId) => {
+    try {
+      const initialFetch = await fetch(`http://localhost:3000/api/v1/users/${userId}`);
+      const user = await initialFetch.json();
+
+      this.setState({
+        user,
+        loading: false
+      });
+    } catch (error) {
+      this.setState({
+        showAlert: true,
+        alertMsg: `Invalid user name or password.`
+      })
     }
   }
 
@@ -76,7 +93,7 @@ export default class App extends React.Component {
     } catch (error) {
       this.setState({
         showAlert: true,
-        alertMsg: `Invalid user name or password.`
+        alertMsg: error.message
       });
     }
   }
