@@ -19,7 +19,7 @@ export default class App extends React.Component {
     return (
       <ScrollView>
         <View style={styles.container}>
-        <Image source={require('./assets/RNFirebase.png')} style={[styles.logo]} />
+        <Image source={require('../../assets/RNFirebase.png')} style={[styles.logo]} />
         <Text style={styles.welcome}>
           Welcome to the React Native{'\n'}Firebase starter project!
         </Text>
