@@ -36,6 +36,7 @@ export default class Decks extends Component<Props> {
     return (
       <View style={styles.container}>
         <FlatList
+          style={styles.deckList}
           data={this.state.decks}
           renderItem={({ item }) => (
               <TouchableOpacity 
@@ -59,10 +60,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingVertical: 20,
   },
-  deckCont: {
-    width: 150,
-    backgroundColor: 'magenta',
+  deckList: {
+    flex: 1,
+    flexDirection: 'row',
   },
   deck: {
     backgroundColor: '#3AAFB9',
