@@ -61,6 +61,20 @@ export default class App extends React.Component {
     this.setState({ user });
   }
 
+  updateUserPoints = () => {
+    try {
+      const points = this.state.user.userPoints;
+      const userId = this.state.user.firebase_id;
+
+      const initialFetch = await verbAndParse('PATCH', `http://localhost:3000/api/v1/users/${userId}`, { points });
+    } catch (error) {
+      this.setState({
+        showAlert: true,
+        alertMsg: error.message
+      });
+    }
+  }
+
   handleLogin = async (email, password) => {
     this.setState({ loading: true });
 

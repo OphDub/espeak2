@@ -37,7 +37,7 @@ app.patch('/api/v1/users/:id', (request, response) => {
   const { id } = request.params;
   const userPatch = request.body;
 
-  database('users').where('id', id).update(userPatch)
+  database('users').where('firebase_id', id).update(userPatch)
     .then( user => {
       if ( user ) {
         response.status(200).json({ id });
