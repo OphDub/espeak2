@@ -1,4 +1,4 @@
-package com.invertase.rnfirebasestarter;
+package com.turingschoolofsoftwareanddesign.espeak;
 
 import android.app.Application;
 
