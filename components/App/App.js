@@ -58,7 +58,8 @@ export default class App extends React.Component {
 
     try {
       const user = await auth.signInWithEmailAndPassword(email, password);
-      this.beLogin(user.uid);
+
+      await this.beLogin(user.uid);
     } catch (error) {
       this.setState({ showAlert:true, alertMsg:error.message });
     }
@@ -66,9 +67,11 @@ export default class App extends React.Component {
 
   beLogin = async (userId) => {
     try {
-      const user = fetch(`/api/v1/users/${userId}`);
+      const initialFetch = await fetch(`http://localhost:3000/api/v1/users/${userId}`);
+      const user = await initialFetch.json();
+
       this.setState({
-        user: user,
+        user,
         loading: false
       });
     } catch (error) {
