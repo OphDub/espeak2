@@ -1,60 +1,131 @@
 import React from 'react';
 import { StyleSheet, Platform, Image, Text, View, ScrollView } from 'react-native';
-
+import { TabNavigator } from 'react-navigation';
+import AwesomeAlert from 'react-native-awesome-alerts';
 import firebase from 'react-native-firebase';
 
+import Login from '../Login/Login';
+import Settings from '../Settings/Settings';
+import WordStackNav from '../WordStackNav/WordStackNav';
+import { verbAndParse } from '../../helper';
+import config from '../../fbconfig';
+
+const routeConfig = {
+  Decks: {
+    screen: WordStackNav
+  },
+  Settings: {
+    screen: Settings
+  },
+}
+
+const navConfig = {
+  tabBarOptions: {
+    labelStyle: {
+      fontSize: 38,
+    }
+  }
+}
+
+const RootNav = TabNavigator(routeConfig, navConfig);
+
+
+firebase.initializeApp(config);
+
+const auth = firebase.auth();
+
 export default class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      // firebase things?
+      user: null,
+      loading: false,
+      showAlert: false,
+      alertMsg: '',
     };
   }
 
-  componentDidMount() {
-    // firebase things?
+  showAlert = () => {
+    this.setState({ showAlert: true });
+  }
+
+  hideAlert = () => {
+    this.setState({ showAlert: false });
+  }
+
+  handleLogin = async (email, password) => {
+    this.setState({ loading: true });
+
+    try {
+      const user = await auth.signInWithEmailAndPassword(email, password);
+      this.setState({ user: user.email, loading: false });
+      console.log('User signed in', user);
+    } catch (error) {
+      this.setState({ showAlert:true, alertMsg:error.message });
+    }
+  }
+
+  handleRegistration = async (userInfo) => {
+    const { email, userName, password } = userInfo;
+    this.setState({ loading: true });
+
+    try {
+      const user = await auth.createUserWithEmailAndPassword(email, password);
+      this.setState({ user: user.email, loading: false });
+      console.log('User created', user);
+    } catch (error) {
+      this.setState({
+        showAlert: true,
+        alertMsg: `Invalid user name or password.`
+      });
+    }
+  }
+
+  beRegistration = async (userInfo) => {
+    try {
+      const { email, userName, password } = userInfo;
+      const user = { name: userName, email: email, stack_id: 1 };
+      const url = 'https://espeak-be.herokuapp.com/api/v1/users';
+      const response = await verbAndParse('POST', url, user);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  showCondition = () => {
+    if (this.state.user) {
+      return <RootNav
+                screenProps={{userEmail: this.state.user}}
+              />
+    } else {
+      return (
+        <View style={styles.container}>
+          <Login
+            handleLogin={this.handleLogin}
+            handleRegistration={this.handleRegistration}
+            beRegistration={this.beRegistration}/>
+          <AwesomeAlert
+            show={this.state.showAlert}
+            showProgress={false}
+            title={`Uh oh! There's a problem!`}
+            message={this.state.alertMsg}
+            closeOnTouchOutside={true}
+            closeOnHardwareBackPress={false}
+            showCancelButton={false}
+            showConfirmButton={true}
+            confirmText="OK"
+            confirmButtonColor="#3AAFb9"
+            onConfirmPressed={() => {
+              this.hideAlert();
+            }}/>
+        </View>
+      )
+    }
   }
 
   render() {
     return (
-      <ScrollView>
-        <View style={styles.container}>
-        <Image source={require('../../assets/RNFirebase.png')} style={[styles.logo]} />
-        <Text style={styles.welcome}>
-          Welcome to the React Native{'\n'}Firebase starter project!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        {Platform.OS === 'ios' ? (
-          <Text style={styles.instructions}>
-            Press Cmd+R to reload,{'\n'}
-            Cmd+D or shake for dev menu
-          </Text>
-        ) : (
-          <Text style={styles.instructions}>
-            Double tap R on your keyboard to reload,{'\n'}
-            Cmd+M or shake for dev menu
-          </Text>
-        )}
-        <View style={styles.modules}>
-          <Text style={styles.modulesHeader}>The following Firebase modules are enabled:</Text>
-          {firebase.admob.nativeModuleExists && <Text style={styles.module}>Admob</Text>}
-          {firebase.analytics.nativeModuleExists && <Text style={styles.module}>Analytics</Text>}
-          {firebase.auth.nativeModuleExists && <Text style={styles.module}>Authentication</Text>}
-          {firebase.crashlytics.nativeModuleExists && <Text style={styles.module}>Crashlytics</Text>}
-          {firebase.firestore.nativeModuleExists && <Text style={styles.module}>Cloud Firestore</Text>}
-          {firebase.messaging.nativeModuleExists && <Text style={styles.module}>Cloud Messaging</Text>}
-          {firebase.links.nativeModuleExists && <Text style={styles.module}>Dynamic Links</Text>}
-          {firebase.iid.nativeModuleExists && <Text style={styles.module}>Instance ID</Text>}
-          {firebase.notifications.nativeModuleExists && <Text style={styles.module}>Notifications</Text>}
-          {firebase.perf.nativeModuleExists && <Text style={styles.module}>Performance Monitoring</Text>}
-          {firebase.database.nativeModuleExists && <Text style={styles.module}>Realtime Database</Text>}
-          {firebase.config.nativeModuleExists && <Text style={styles.module}>Remote Config</Text>}
-          {firebase.storage.nativeModuleExists && <Text style={styles.module}>Storage</Text>}
-        </View>
-        </View>    
-      </ScrollView>
+      this.showCondition()
     );
   }
 }
@@ -66,12 +137,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  logo: {
-    height: 80,
-    marginBottom: 16,
-    marginTop: 32,
-    width: 80,
-  },
   welcome: {
     fontSize: 20,
     textAlign: 'center',
@@ -82,16 +147,4 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
-  modules: {
-    margin: 20,
-  },
-  modulesHeader: {
-    fontSize: 16,
-    marginBottom: 8,
-  },
-  module: {
-    fontSize: 14,
-    marginTop: 4,
-    textAlign: 'center',
-  }
 });
