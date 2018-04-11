@@ -29,18 +29,19 @@ export default class Progress extends Component<Props> {
 
   render() {
     const { category } = this.props.stack;
+
     return (
       <View style={styles.container}>
         <View style={styles.pointsWrapper}>
           <View style={styles.progressWrapper}>
-            <View style={this.styleBar(20)}></View>
+            <View style={this.styleBar(this.props.userPoints)}></View>
           </View>
           <Text style={styles.points}>
-            {this.state.total} pts
+            {this.props.userPoints} pts
           </Text>
         </View>
         <Text style={styles.text}>
-          {category}: {this.styleBar(20).width}
+          {category}: {this.styleBar(this.props.userPoints).width}
         </Text>
       </View>
     )

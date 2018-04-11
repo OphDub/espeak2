@@ -80,10 +80,11 @@ export default class WordCards extends Component<Props> {
 
   render() {
     const { params } = this.props.navigation.state;
+    const { userPoints } = this.props.screenProps;
 
     return (
       <View style={styles.container}>
-        <Progress stack={this.state.stack}/>
+        <Progress stack={this.state.stack} userPoints={userPoints}/>
         { this.handleCardLoad() }
       </View>
     );

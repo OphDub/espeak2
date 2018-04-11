@@ -25,7 +25,10 @@ type Props = {};
 export default class WordStackNav extends Component<Props> {
   render() {
     return (
-      <RootNav screenProps={{ handlePoints: this.props.screenProps.handlePoints }}/>
+      <RootNav screenProps={{
+        handlePoints: this.props.screenProps.handlePoints,
+        userPoints: this.props.screenProps.userPoints
+      }}/>
     )
   }
 }

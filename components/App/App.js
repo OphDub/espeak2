@@ -74,10 +74,7 @@ export default class App extends React.Component {
       const initialFetch = await fetch(`http://localhost:3000/api/v1/users/${userId}`);
       const user = await initialFetch.json();
 
-      this.setState({
-        user,
-        loading: false
-      });
+      this.setState({ user: user[0], loading: false });
     } catch (error) {
       this.setState({
         showAlert: true,
@@ -118,6 +115,7 @@ export default class App extends React.Component {
       return <RootNav
                 screenProps={{
                   userEmail: this.state.user,
+                  userPoints: this.state.user.points,
                   handlePoints: this.handlePoints
                 }}
               />
