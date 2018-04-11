@@ -54,7 +54,11 @@ export default class App extends React.Component {
   }
 
   handlePoints = () => {
-    console.log('user points', this.state.user.points);
+    const { user } = this.state;
+
+    user.points += 10;
+
+    this.setState({ user });
   }
 
   handleLogin = async (email, password) => {

@@ -74,7 +74,7 @@ export default class WordCards extends Component<Props> {
 
       return word;
     });
-
+    this.props.screenProps.handlePoints();
     this.setState({ words });
   }
 
