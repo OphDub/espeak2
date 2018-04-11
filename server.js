@@ -24,7 +24,7 @@ app.get('/api/v1/users', (request, response) => {
 app.get('/api/v1/users/:id', (request, response) => {
   const { id } = request.params;
 
-  database('users').where('id', id).select()
+  database('users').where('firebase_id', id).select()
     .then( user => {
       response.status(200).json(user)
     })
