@@ -22,7 +22,7 @@ const routeConfig = {
 const navConfig = {
   tabBarOptions: {
     labelStyle: {
-      fontSize: 38,
+      fontSize: 20,
     }
   }
 }
