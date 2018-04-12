@@ -131,7 +131,7 @@ export default class App extends React.Component {
       const url = 'http://localhost:3000/api/v1/users/';
       const user = await verbAndParse('POST', url, newUser);
       console.log('Backend user', user);
-      this.setState({ user: user, loading: false });
+      this.setState({ user: newUser, loading: false });
     } catch (error) {
       this.setState({
         showAlert: true,
