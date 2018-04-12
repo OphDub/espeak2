@@ -53,6 +53,28 @@ export default class App extends React.Component {
     this.setState({ showAlert: false });
   }
 
+  handlePoints = () => {
+    const { user } = this.state;
+
+    user.points += 10;
+
+    this.setState({ user });
+  }
+
+  updateUserPoints = () => {
+    try {
+      const points = this.state.user.userPoints;
+      const userId = this.state.user.firebase_id;
+
+      const initialFetch = await verbAndParse('PATCH', `http://localhost:3000/api/v1/users/${userId}`, { points });
+    } catch (error) {
+      this.setState({
+        showAlert: true,
+        alertMsg: error.message
+      });
+    }
+  }
+
   handleLogin = async (email, password) => {
     this.setState({ loading: true });
 
@@ -70,10 +92,7 @@ export default class App extends React.Component {
       const initialFetch = await fetch(`http://localhost:3000/api/v1/users/${userId}`);
       const user = await initialFetch.json();
 
-      this.setState({
-        user,
-        loading: false
-      });
+      this.setState({ user: user[0], loading: false });
     } catch (error) {
       this.setState({
         showAlert: true,
@@ -112,7 +131,11 @@ export default class App extends React.Component {
   showCondition = () => {
     if (this.state.user) {
       return <RootNav
-                screenProps={{userEmail: this.state.user}}
+                screenProps={{
+                  userEmail: this.state.user,
+                  userPoints: this.state.user.points,
+                  handlePoints: this.handlePoints
+                }}
               />
     } else {
       return (
