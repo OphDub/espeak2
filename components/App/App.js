@@ -66,7 +66,7 @@ export default class App extends React.Component {
       const points = this.state.user.userPoints;
       const userId = this.state.user.firebase_id;
 
-      const initialFetch = await verbAndParse('PATCH', `http://localhost:3000/api/v1/users/${userId}`, { points });
+      const initialFetch = await verbAndParse('PATCH', `https://espeak-be-opa.herokuapp.com/api/v1/users/${userId}`, { points });
     } catch (error) {
       this.setState({
         showAlert: true,
@@ -89,7 +89,7 @@ export default class App extends React.Component {
 
   beLogin = async (userId) => {
     try {
-      const initialFetch = await fetch(`http://localhost:3000/api/v1/users/${userId}`);
+      const initialFetch = await fetch(`https://espeak-be-opa.herokuapp.com/api/v1/users/${userId}`);
       const user = await initialFetch.json();
 
       this.setState({ user: user[0], loading: false });
@@ -128,7 +128,7 @@ export default class App extends React.Component {
         stack_id: 1,
         firebase_id: uid
       };
-      const url = 'http://localhost:3000/api/v1/users/';
+      const url = 'https://espeak-be-opa.herokuapp.com/api/v1/users/';
       const user = await verbAndParse('POST', url, newUser);
       console.log('Backend user', user);
       this.setState({ user: newUser, loading: false });
