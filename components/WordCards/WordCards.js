@@ -18,6 +18,7 @@ export default class WordCards extends Component<Props> {
     this.state = {
       stack: this.props.navigation.state.params,
       words: [],
+      currentCardId: 0,
     }
   }
   static navigationOptions = {
@@ -35,7 +36,7 @@ export default class WordCards extends Component<Props> {
 
       return {...word, isCurrent: false, isCompleted: false};
     })
-    this.setState({words})
+    this.setState({ words })
   }
 
   handleCardLoad = () => {
@@ -44,10 +45,10 @@ export default class WordCards extends Component<Props> {
     }
 
     const currentCard = this.state.words.find(card => card.isCurrent === true);
+
     if (!currentCard) {
-      console.log('curr card', currentCard)
       this.props.screenProps.updateUserPoints();
-      console.log('fired')
+
       return (
         <View style={styles.endMsgCont}>
           <Text style={styles.endMsg}>Great job!</Text>
@@ -60,8 +61,9 @@ export default class WordCards extends Component<Props> {
         </View>
       )
     }
-    return <Card 
-      word={currentCard} 
+
+    return <Card
+      word={currentCard}
       onCorrectAnswer={this.handleCorrectAnswer}
     />
   }
@@ -77,19 +79,26 @@ export default class WordCards extends Component<Props> {
 
       return word;
     });
+
     this.props.screenProps.handlePoints();
-    this.setState({ words });
+    this.setState({
+      words,
+      currentCardId: wordIndex + 1
+    });
   }
 
   render() {
-    console.log('word cards', this.state);
-
     const { params } = this.props.navigation.state;
     const { userPoints } = this.props.screenProps;
 
     return (
       <View style={styles.container}>
-        <Progress stack={this.state.stack} userPoints={userPoints}/>
+        <Progress
+          stack={this.state.stack}
+          userPoints={userPoints}
+          currentCardId={this.state.currentCardId}
+          wordTotal={this.state.words.length}
+        />
         { this.handleCardLoad() }
       </View>
     );
