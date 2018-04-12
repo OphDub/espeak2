@@ -78,11 +78,10 @@ export default class App extends React.Component {
 
       verbAndParse('PATCH', url, { points });
     } catch (error) {
-      console.log(error);
-      // this.setState({
-      //   showAlert: true,
-      //   alertMsg: error.message
-      // });
+      this.setState({
+        showAlert: true,
+        alertMsg: error.message
+      });
     }
   }
 
