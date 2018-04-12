@@ -52,8 +52,8 @@ app.patch('/api/v1/users/:id', (request, response) => {
 
 app.post('/api/v1/users', (request, response) => {
   const user = request.body;
-  
-  for (let requiredParam of ['name', 'email', 'stack_id']) {
+
+  for (let requiredParam of ['name', 'email', 'points', 'stack_id', 'firebase_id']) {
     if(!user[requiredParam]) {
       return response.status(422)
       .send({error: `Expected format: {name: <String>, email: <String>, stack_id: <Number> } You're missing a ${requiredParam}.`});

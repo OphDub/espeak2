@@ -46,7 +46,6 @@ export default class Register extends Component <Props>{
     }
 
     this.props.handleRegistration(user);
-    this.props.beRegistration(user);
   }
 
   showAlert = () => {

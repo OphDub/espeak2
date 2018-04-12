@@ -61,7 +61,7 @@ export default class App extends React.Component {
     this.setState({ user });
   }
 
-  updateUserPoints = () => {
+  updateUserPoints = async () => {
     try {
       const points = this.state.user.userPoints;
       const userId = this.state.user.firebase_id;
@@ -107,8 +107,9 @@ export default class App extends React.Component {
 
     try {
       const user = await auth.createUserWithEmailAndPassword(email, password);
-      this.setState({ user: user.email, loading: false });
-      console.log('User created', user);
+
+      await this.beRegistration(user, userName);
+      console.log('Firebase user created', user);
     } catch (error) {
       this.setState({
         showAlert: true,
@@ -117,14 +118,25 @@ export default class App extends React.Component {
     }
   }
 
-  beRegistration = async (userInfo) => {
+  beRegistration = async (userInfo, userName) => {
     try {
-      const { email, userName, password } = userInfo;
-      const user = { name: userName, email: email, stack_id: 1 };
-      const url = 'https://espeak-be.herokuapp.com/api/v1/users';
-      const response = await verbAndParse('POST', url, user);
+      const { email, uid } = userInfo;
+      const newUser = {
+        name: userName,
+        email: email,
+        points: 0,
+        stack_id: 1,
+        firebase_id: uid
+      };
+      const url = 'http://localhost:3000/api/v1/users/';
+      const user = await verbAndParse('POST', url, newUser);
+      console.log('Backend user', user);
+      this.setState({ user: newUser, loading: false });
     } catch (error) {
-      console.log(error);
+      this.setState({
+        showAlert: true,
+        alertMsg: error.message
+      });
     }
   }
 
