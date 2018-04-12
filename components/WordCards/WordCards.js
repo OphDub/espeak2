@@ -45,6 +45,9 @@ export default class WordCards extends Component<Props> {
 
     const currentCard = this.state.words.find(card => card.isCurrent === true);
     if (!currentCard) {
+      console.log('curr card', currentCard)
+      this.props.screenProps.updateUserPoints();
+      console.log('fired')
       return (
         <View style={styles.endMsgCont}>
           <Text style={styles.endMsg}>Great job!</Text>
@@ -79,6 +82,8 @@ export default class WordCards extends Component<Props> {
   }
 
   render() {
+    console.log('word cards', this.state);
+
     const { params } = this.props.navigation.state;
     const { userPoints } = this.props.screenProps;
 
