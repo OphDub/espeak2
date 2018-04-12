@@ -35,3 +35,5 @@ This project was developed using using Jest and Enzyme testing utilities. To run
 
 Landing Page:
 ![Landing Page]()
+
+This project was bootstrapped with [RNFirebase](https://github.com/invertase/react-native-firebase)
