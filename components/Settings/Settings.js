@@ -32,7 +32,7 @@ export default class Home extends Component <Props> {
           onPress={this.logout}
           style={styles.logoutBtn}
         >
-          <Text style={styles.buttonText}>Logout</Text>
+          <Text style={styles.buttonText}>LOGOUT</Text>
         </TouchableOpacity>
       </View>
     )
@@ -73,13 +73,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     margin: 10,
+    padding: 10,
     width: 150,
-    height: 30,
-    borderColor: '#1e3888',
-    borderWidth: 2,
-    borderRadius: 5,
+    backgroundColor: '#3AAFB9',
+    borderRadius: 8,
+    shadowColor: '#979797',
+    shadowOpacity: 0.7,
+    shadowOffset: { width: 2, height: 2 },
+    shadowRadius: 4,
   },
   buttonText: {
-    color: '#1e3888'
+    color: '#FFF',
   }
 });
