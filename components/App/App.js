@@ -149,47 +149,47 @@ export default class App extends React.Component {
     }
   }
 
-    showCondition = () => {
-      return <RootNav
-                screenProps={{userEmail: this.state.user}}
-              />
-
-  }
-
- /* showCondition = () => {*/
-    //if (this.state.user) {
+ /*   showCondition = () => {*/
       //return <RootNav
-                //screenProps={{
-                  //userEmail: this.state.user,
-                  //userPoints: this.state.user.points,
-                  //handlePoints: this.handlePoints
-                //}}
+                //screenProps={{userEmail: this.state.user}}
               ///>
-    //} else {
-      //return (
-        //<View style={styles.container}>
-          //<Login
-            //handleLogin={this.handleLogin}
-            //handleRegistration={this.handleRegistration}
-            //beRegistration={this.beRegistration}/>
-          //<AwesomeAlert
-            //show={this.state.showAlert}
-            //showProgress={false}
-            //title={`Uh oh! There's a problem!`}
-            //message={this.state.alertMsg}
-            //closeOnTouchOutside={true}
-            //closeOnHardwareBackPress={false}
-            //showCancelButton={false}
-            //showConfirmButton={true}
-            //confirmText="OK"
-            //confirmButtonColor="#3AAFb9"
-            //onConfirmPressed={() => {
-              //this.hideAlert();
-            //}}/>
-        //</View>
-      //)
-    //}
+
   /*}*/
+
+  showCondition = () => {
+    if (this.state.user) {
+      return <RootNav
+                screenProps={{
+                  userEmail: this.state.user,
+                  userPoints: this.state.user.points,
+                  handlePoints: this.handlePoints
+                }}
+              />
+    } else {
+      return (
+        <View style={styles.container}>
+          <Login
+            handleLogin={this.handleLogin}
+            handleRegistration={this.handleRegistration}
+            beRegistration={this.beRegistration}/>
+          <AwesomeAlert
+            show={this.state.showAlert}
+            showProgress={false}
+            title={`Uh oh! There's a problem!`}
+            message={this.state.alertMsg}
+            closeOnTouchOutside={true}
+            closeOnHardwareBackPress={false}
+            showCancelButton={false}
+            showConfirmButton={true}
+            confirmText="OK"
+            confirmButtonColor="#3AAFb9"
+            onConfirmPressed={() => {
+              this.hideAlert();
+            }}/>
+        </View>
+      )
+    }
+  }
 
   render() {
     return (
