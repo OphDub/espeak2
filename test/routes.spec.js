@@ -17,11 +17,14 @@ describe('API Routes', () => {
   beforeEach((done) => {
     database.migrate.rollback()
       .then(() => {
-        database.migrate.latest()
+        database.migrate.rollback()
           .then(() => {
-            return database.seed.run()
+            database.migrate.latest()
               .then(() => {
-                done();
+                return database.seed.run()
+                  .then(() => {
+                    done();
+                  })
               })
           })
       })
@@ -35,10 +38,11 @@ describe('API Routes', () => {
         response.should.have.status(200)
         response.should.be.json;
         response.body.should.be.a('array');
-        response.body[0].should.have.all.keys(['name', 'email', 'id', 'stack_id', 'points'])
+        response.body[0].should.have.all.keys(['name', 'email', 'firebase_id', 'id', 'stack_id', 'points'])
         response.body[0].id.should.equal(1)
         response.body[0].name.should.equal('jon snow');
-        response.body[0].email.should.equal('jon@knownothing.com')
+        response.body[0].email.should.equal('jon@knownothing.com');
+        response.body[0].firebase_id.should.equal('KZ5xIaj7eQOOP4fD3sGXbXYIIN22');
         response.body[0].stack_id.should.equal(1);
       })
     })
@@ -46,25 +50,30 @@ describe('API Routes', () => {
 
   describe('GET /api/v1/users/:id', () => {
     it('should return just one user', () => {
+      const userFbId = 'KZ5xIaj7eQOOP4fD3sGXbXYIIN22';
+
       return chai.request(server)
-      .get('/api/v1/users/1')
+      .get(`/api/v1/users/${userFbId}`)
       .then( response => {
         response.should.have.status(200);
         response.should.be.json;
-        response.body[0].should.have.all.keys(['name', 'email', 'id', 'stack_id', 'points'])
-        response.body[0].id.should.equal(1)
+        response.body[0].should.have.all.keys(['name', 'email', 'firebase_id', 'id', 'stack_id', 'points'])
+        response.body[0].id.should.equal(1);
         response.body[0].name.should.equal('jon snow');
-        response.body[0].email.should.equal('jon@knownothing.com')
-        response.body[0].points.should.equal(0)
-        response.body[0].stack_id.should.equal(1);        
+        response.body[0].email.should.equal('jon@knownothing.com');
+        response.body[0].points.should.equal(0);
+        response.body[0].firebase_id.should.equal('KZ5xIaj7eQOOP4fD3sGXbXYIIN22');
+        response.body[0].stack_id.should.equal(1);
       })
     })
   })
 
   describe('PATCH /api/v1/users/:id', () => {
     it('should update the users points and', () => {
+      const userFbId = 'KZ5xIaj7eQOOP4fD3sGXbXYIIN22';
+
       return chai.request(server)
-      .patch('/api/v1/users/1')
+      .patch(`/api/v1/users/${userFbId}`)
       .send({
         points: 50
       })
@@ -82,7 +91,9 @@ describe('API Routes', () => {
       .send({
         name: 'pophus',
         email: 'pophus@notpophanda.com',
-        stack_id: 1
+        stack_id: 1,
+        points: 1,
+        firebase_id: 'KZ8xIaj7eQOOP4fD3sGXbXYIIN25'
       })
       .then( response => {
         response.should.have.status(202);
