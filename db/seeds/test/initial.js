@@ -38,7 +38,8 @@ exports.seed = function (knex, Promise) {
                 name: 'jon snow',
                 email: 'jon@knownothing.com',
                 stack_id: stackId[0],
-                points: 0
+                points: 0,
+                firebase_id: 'KZ5xIaj7eQOOP4fD3sGXbXYIIN22'
               }
             )
           })
