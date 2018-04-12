@@ -72,10 +72,11 @@ export default class App extends React.Component {
 
   updateUserPoints = async () => {
     try {
-      const points = this.state.user.userPoints;
+      const points = this.state.user.points;
       const userId = this.state.user.firebase_id;
+      const url = `http://localhost:3000/api/v1/users/${userId}`;
 
-      const initialFetch = await verbAndParse('PATCH', `https://espeak-be-opa.herokuapp.com/api/v1/users/${userId}`, { points });
+      verbAndParse('PATCH', url, { points });
     } catch (error) {
       this.setState({
         showAlert: true,
@@ -162,7 +163,8 @@ export default class App extends React.Component {
                 screenProps={{
                   userEmail: this.state.user,
                   userPoints: this.state.user.points,
-                  handlePoints: this.handlePoints
+                  handlePoints: this.handlePoints,
+                  updateUserPoints: this.updateUserPoints
                 }}
               />
     } else {
