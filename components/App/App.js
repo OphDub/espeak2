@@ -74,7 +74,7 @@ export default class App extends React.Component {
     try {
       const points = this.state.user.points;
       const userId = this.state.user.firebase_id;
-      const url = `http://localhost:3000/api/v1/users/${userId}`;
+      const url = `https://espeak-be-opa.herokuapp.com/api/v1/users/${userId}`;
 
       verbAndParse('PATCH', url, { points });
     } catch (error) {
