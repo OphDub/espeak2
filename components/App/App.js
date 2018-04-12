@@ -74,13 +74,24 @@ export default class App extends React.Component {
     try {
       const points = this.state.user.userPoints;
       const userId = this.state.user.firebase_id;
-
-      const initialFetch = await verbAndParse('PATCH', `https://espeak-be-opa.herokuapp.com/api/v1/users/${userId}`, { points });
-    } catch (error) {
-      this.setState({
-        showAlert: true,
-        alertMsg: error.message
+      const user = this.state.user;
+      console.log('userid', userId);
+      const initialFetch = await fetch(`http://localhost:3000/api/v1/users/${userId}`, {
+        method: 'PATCH',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify({ user })
       });
+      const response = await initialFetch.json();
+
+      console.log('update points in app', response);
+    } catch (error) {
+      console.log(error);
+      // this.setState({
+      //   showAlert: true,
+      //   alertMsg: error.message
+      // });
     }
   }
 
@@ -162,7 +173,8 @@ export default class App extends React.Component {
                 screenProps={{
                   userEmail: this.state.user,
                   userPoints: this.state.user.points,
-                  handlePoints: this.handlePoints
+                  handlePoints: this.handlePoints,
+                  updateUserPoints: this.updateUserPoints
                 }}
               />
     } else {
