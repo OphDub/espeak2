@@ -35,36 +35,37 @@ export default class Decks extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <FlatList
-          style={styles.deckList}
-          data={this.state.decks}
-          renderItem={({ item }) => (
+        <View style={styles.deckList}>
+          {this.state.decks.map( deck => {
+            return (
               <TouchableOpacity 
-                onPress={() => this.navigateToCards(item)}
-                value={item.id}
+                onPress={() => this.navigateToCards(deck)}
+                value={deck.id}
                 style={styles.deck} >
                 <Text style={styles.deckText}>
-                  {item.category}
+                  {deck.category}
                 </Text>             
               </TouchableOpacity>
             )
-          }
-          keyExtractor={item => item.category}
-        />
+          })}
+        </View>
       </View>
     )
   }
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    paddingVertical: 20,
+    paddingVertical: 40,
   },
   deckList: {
-    flex: 1,
     flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
   },
   deck: {
     backgroundColor: '#3AAFB9',
@@ -83,3 +84,4 @@ const styles = StyleSheet.create({
     margin: 10,
   },
 });
+
