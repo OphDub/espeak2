@@ -16,7 +16,7 @@ export default class Progress extends Component<Props> {
   }
 
   styleBar = (currentStatus) => {
-    let percentComplete = (currentStatus/this.state.total) * 100;
+    let percentComplete = (currentStatus/this.props.wordTotal) * 100;
     return {
       width: `${percentComplete}%`,
       height: 16,
@@ -34,14 +34,14 @@ export default class Progress extends Component<Props> {
       <View style={styles.container}>
         <View style={styles.pointsWrapper}>
           <View style={styles.progressWrapper}>
-            <View style={this.styleBar(this.props.userPoints)}></View>
+            <View style={this.styleBar(this.props.currentCardId)}></View>
           </View>
           <Text style={styles.points}>
             {this.props.userPoints} pts
           </Text>
         </View>
         <Text style={styles.text}>
-          {category}: {this.styleBar(this.props.userPoints).width}
+          {category}: {this.styleBar(this.props.currentCardId).width}
         </Text>
       </View>
     )
