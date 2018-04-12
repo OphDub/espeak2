@@ -22,8 +22,17 @@ const routeConfig = {
 const navConfig = {
   tabBarOptions: {
     labelStyle: {
-      fontSize: 38,
-    }
+      fontSize: 22,
+    },
+    activeTintColor: '#F5E663',
+    activeBackgroundColor: '#CFAAF1',
+    inactiveTintColor: 'white',
+    style: {
+      backgroundColor: '#B47AEA',
+    },
+    tabStyle: {
+      marginVertical: 10,
+    },
   }
 }
 
@@ -63,20 +72,11 @@ export default class App extends React.Component {
 
   updateUserPoints = async () => {
     try {
-      const points = this.state.user.userPoints;
+      const points = this.state.user.points;
       const userId = this.state.user.firebase_id;
-      const user = this.state.user;
-      console.log('userid', userId);
-      const initialFetch = await fetch(`http://localhost:3000/api/v1/users/${userId}`, {
-        method: 'PATCH',
-        headers: {
-          'content-type': 'application/json'
-        },
-        body: JSON.stringify({ user })
-      });
-      const response = await initialFetch.json();
+      const url = `http://localhost:3000/api/v1/users/${userId}`;
 
-      console.log('update points in app', response);
+      verbAndParse('PATCH', url, { points });
     } catch (error) {
       console.log(error);
       // this.setState({
@@ -150,6 +150,13 @@ export default class App extends React.Component {
       });
     }
   }
+
+ /*   showCondition = () => {*/
+      //return <RootNav
+                //screenProps={{userEmail: this.state.user}}
+              ///>
+
+  /*}*/
 
   showCondition = () => {
     if (this.state.user) {
