@@ -22,18 +22,20 @@ export default class Home extends Component <Props> {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>SETTINGS</Text>
-        <View style={styles.statsDisplay}>
-          <Text style={styles.listItems}>Username: {this.props.screenProps.userEmail}</Text>
-          <Text style={styles.listItems}>Current Points: </Text>
-          <Text style={styles.listItems}>Current Level:</Text>
+        <Text style={styles.title}>Settings</Text>
+        <View style={styles.statsCont}>
+          <View style={styles.statsDisplay}>
+            <Text style={styles.listItems}>Username: {this.props.screenProps.userEmail}</Text>
+            <Text style={styles.listItems}>Current Points: </Text>
+            <Text style={styles.listItems}>Current Level:</Text>
+          </View>
+          <TouchableOpacity
+            onPress={this.logout}
+            style={styles.logoutBtn}
+          >
+            <Text style={styles.buttonText}>LOGOUT</Text>
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity
-          onPress={this.logout}
-          style={styles.logoutBtn}
-        >
-          <Text style={styles.buttonText}>LOGOUT</Text>
-        </TouchableOpacity>
       </View>
     )
   }
@@ -43,13 +45,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
+    paddingVertical: 50,
   },
   title: {
     fontSize: 30,
+    fontFamily: 'Noteworthy',
     textAlign: 'center',
-    color: 'purple',
-    marginTop: 60,
+    color: '#3AAFb9',
+    marginBottom: 30,
   },
   statsDisplay: {
     display: 'flex',
@@ -61,13 +65,14 @@ const styles = StyleSheet.create({
     borderColor: '#1e3888',
     borderWidth: 2,
     borderRadius: 8,
+    marginVertical: 20,
     shadowColor: '#979797',
     shadowOpacity: 0.7,
     shadowOffset: { width: 2, height: 2 },
     shadowRadius: 4,
   },
   listItems: {
-    fontSize: 25,
+    fontSize: 24,
     margin: 5,
     color: '#1e3888'
   },
@@ -88,5 +93,6 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: '#FFF',
+    fontSize: 18,
   }
 });
