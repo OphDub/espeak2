@@ -45,12 +45,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: 50,
   },
-  title: {
-    fontSize: 30,
-    textAlign: 'center',
-    color: '#3AAFb9',
-    marginBottom: 30,
-  },
   statsDisplay: {
     display: 'flex',
     alignSelf: 'center',
