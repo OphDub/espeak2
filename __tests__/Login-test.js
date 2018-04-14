@@ -22,12 +22,15 @@ describe('LOGIN', () => {
       expect(instance.state.toggleRegister).toEqual(true);
     });
 
-    it('renderRegister should return a Register component', () => {
-      const mockFn = jest.fn();
-      const mockToggleRegistration = jest.fn().mockImplementation(() => {});
-      const wrapper = renderer.create(<Login handleRegistration={mockFn} beRegistration={mockFn}/>);
+    it('should render different jsx based on toggleRegistration in state', () => {
+      const wrapper = renderer.create(<Login />);
       const instance = wrapper.getInstance();
-      expect(instance.renderRegister()).toEqual(<Register handleRegistration={mockFn} beRegistration={mockFn} toggleRegistration={mockToggleRegistration}/>);
+
+      expect(wrapper).toMatchSnapshot();
+
+      instance.setState({ toggleRegister: true });
+
+      expect(wrapper).toMatchSnapshot();
     });
   });
 });
