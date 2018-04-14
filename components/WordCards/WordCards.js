@@ -27,8 +27,7 @@ export default class WordCards extends Component<Props> {
 
   componentDidMount = async () => {
     const { id } = this.state.stack;
-    const promise = await fetch(`https://espeak-be.herokuapp.com/api/v1/words/${id}`)
-    const jsonResponse = await promise.json()
+    const jsonResponse = await this.getDeck(id);
     const words = jsonResponse.map((word, index) => {
       if (index === 0) {
         return {...word, isCurrent: true, isCompleted: false};
@@ -36,9 +35,21 @@ export default class WordCards extends Component<Props> {
 
       return {...word, isCurrent: false, isCompleted: false};
     })
-    console.log('words in word cards comp', words);
 
     this.setState({ words })
+  }
+
+  getDeck = async (deckId) => {
+    try {
+    const promise = await fetch(`https://espeak-be.herokuapp.com/api/v1/words/${deckId}`)
+      if (promise.status > 226) {
+        throw new Error('We could not find your deck!');
+      } else {
+        return await promise.json();
+      }
+    } catch (error) {
+      throw error;
+    }
   }
 
   handleCardLoad = () => {
