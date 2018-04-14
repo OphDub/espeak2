@@ -96,6 +96,22 @@ describe('WordCards', () => {
 
       expect(wrapper.toJSON()).toMatchSnapshot();
     })
+
+    it('should return end screen if there is no current card left in deck', () => {
+      const instance = wrapper.getInstance();
+
+      instance.setState({ words: [{
+        english: 'hi',
+        spanish: 'hola',
+        hint: 'oh-la',
+        stack_id: 1,
+        isCurrent: false,
+        isCompleted: false
+      }]})
+
+      expect(wrapper.toJSON()).toMatchSnapshot();
+    })
   })
+  
 })
 

@@ -1,5 +1,170 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`WordCards handleCardLoad should return end screen if there is no current card left in deck 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "stretch",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#B47AEA",
+        "display": "flex",
+        "height": 63,
+        "justifyContent": "center",
+        "overflow": "hidden",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "borderColor": "#F5E663",
+            "borderRadius": 5,
+            "borderWidth": 2,
+            "height": 20,
+            "marginTop": 15,
+            "width": 260,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "#F5E663",
+              "borderColor": "#F5E663",
+              "borderLeftWidth": 2,
+              "borderRadius": 2,
+              "height": 16,
+              "width": "0%",
+            }
+          }
+        />
+      </View>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "alignSelf": "flex-end",
+            "color": "#FFF",
+            "fontSize": 20,
+            "marginLeft": 15,
+          }
+        }
+      >
+        50
+         pts
+      </Text>
+    </View>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "alignSelf": "flex-start",
+          "color": "#FFF",
+          "marginLeft": 60,
+          "marginTop": 5,
+        }
+      }
+    >
+      Basics 1
+      : 
+      0%
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#272727",
+          "fontSize": 20,
+          "marginBottom": 20,
+        }
+      }
+    >
+      Great job!
+    </Text>
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      collapsable={undefined}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "backgroundColor": "#3AAFB9",
+          "borderRadius": 8,
+          "opacity": 1,
+          "padding": 10,
+          "shadowColor": "#979797",
+          "shadowOffset": Object {
+            "height": 2,
+            "width": 2,
+          },
+          "shadowOpacity": 0.7,
+          "shadowRadius": 4,
+        }
+      }
+      testID={undefined}
+      tvParallaxProperties={undefined}
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#FFF",
+          }
+        }
+      >
+        BACK TO MY DECKS
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
 exports[`WordCards handleCardLoad should return text saying "No Cards to Render" if no words are stored in state 1`] = `
 <View
   style={
