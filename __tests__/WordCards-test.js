@@ -97,6 +97,21 @@ describe('WordCards', () => {
       expect(wrapper.toJSON()).toMatchSnapshot();
     })
 
+    it('should call updateUserPoints if there are no current cards left in deck', () => {
+      const instance = wrapper.getInstance();
+
+      instance.setState({ words: [{
+        english: 'hi',
+        spanish: 'hola',
+        hint: 'oh-la',
+        stack_id: 1,
+        isCurrent: false,
+        isCompleted: false
+      }]});
+
+      expect(mockScreenProps.updateUserPoints).toHaveBeenCalled();
+    })
+
     it('should return end screen if there is no current card left in deck', () => {
       const instance = wrapper.getInstance();
 
@@ -129,7 +144,60 @@ describe('WordCards', () => {
   })
   
   describe('handleCorrectAnswer', () => {
-    
+    it('should call handlePoints when handleCorrectAnswer is called', () => {
+      const instance = wrapper.getInstance();
+
+      instance.handleCorrectAnswer();
+
+      expect(mockScreenProps.handlePoints).toHaveBeenCalled();
+    })
+
+    it('should update state with new words and currentCardId', () => {
+      const instance = wrapper.getInstance();
+      const ogWords = [
+        {
+          english: 'hi',
+          spanish: 'hola',
+          hint: 'oh-la',
+          stack_id: 1,
+          isCurrent: true,
+          isCompleted: false
+        }, {
+          english: 'bye',
+          spanish: 'adios',
+          hint: 'ah-dee-os',
+          stack_id: 1,
+          isCurrent: false,
+          isCompleted: false
+        }
+      ];
+      const expected = [
+        {
+          english: 'hi',
+          spanish: 'hola',
+          hint: 'oh-la',
+          stack_id: 1,
+          isCurrent: false,
+          isCompleted: false
+        }, {
+          english: 'bye',
+          spanish: 'adios',
+          hint: 'ah-dee-os',
+          stack_id: 1,
+          isCurrent: true,
+          isCompleted: false
+        }
+      ]; 
+      const word = ogWords[0];
+
+      instance.setState({ words: ogWords })
+
+      expect(instance.state.words).toEqual(ogWords);
+      
+      instance.handleCorrectAnswer(word);
+
+      expect(instance.state.words).toEqual(expected);
+    })
   })
 })
 
