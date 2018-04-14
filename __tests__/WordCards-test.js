@@ -49,17 +49,49 @@ describe('WordCards', () => {
     expect(global.fetch).toHaveBeenCalled(); 
   })
 
-  it('returns an array of cards', () => {
-    
-  })
     
   it('should set state on componentDidMount', async () => {
     const instance = await wrapper.getInstance();
-    await console.log(instance.state);
+    const updatedMockDeck = mockDeck.map((word, index) => {
+      if (index === 0) {
+        return {...word, isCurrent: true, isCompleted: false};
+      }
+
+      return {...word, isCurrent: false, isCompleted: false};
+    })
+
+    await instance.componentDidMount();
 
     expect(instance.state.currentCardId).toEqual(0);
     expect(instance.state.stack).toEqual(mockNavigation.state.params);
-    await expect(instance.state.words).resolves.toBe(mockDeck);
+    expect(instance.state.words).toEqual(updatedMockDeck);
+  })
+
+  describe('getDeck', () => {
+    it('should return an array of cards if status code ok', () => {
+      const instance = wrapper.getInstance();
+      const response = instance.getDeck(1);
+      const expected = mockDeck;
+
+      expect(response).resolves.toEqual(expected);
+    });
+
+    it('should console error an error if fetch fails', () => {
+      global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        status: 500
+      }));
+      const wrapper =  renderer.create(<WordCards navigation={mockNavigation} screenProps={mockScreenProps} />);
+      const expected = Error('We could not find your deck!');
+      const response = wrapper.getInstance().getDeck(1);
+
+      expect(response).rejects.toEqual(expected);
+    });
+  })
+
+  describe('handleCardLoad', () => {
+    it('should return text saying "No Cards to Render" if no words are stored in state', () => {
+      
+    })
   })
 })
 
