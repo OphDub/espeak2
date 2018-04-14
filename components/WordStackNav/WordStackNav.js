@@ -18,7 +18,7 @@ const routeConfig = {
     screen: WordCards
   }
 }
-
+  
 const RootNav = StackNavigator(routeConfig);
 
 type Props = {};
