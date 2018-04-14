@@ -1,5 +1,107 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`WordCards handleCardLoad should return text saying "No Cards to Render" if no words are stored in state 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "stretch",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#B47AEA",
+        "display": "flex",
+        "height": 63,
+        "justifyContent": "center",
+        "overflow": "hidden",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "borderColor": "#F5E663",
+            "borderRadius": 5,
+            "borderWidth": 2,
+            "height": 20,
+            "marginTop": 15,
+            "width": 260,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "#F5E663",
+              "borderColor": "#F5E663",
+              "borderLeftWidth": 2,
+              "borderRadius": 2,
+              "height": 16,
+              "width": "NaN%",
+            }
+          }
+        />
+      </View>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "alignSelf": "flex-end",
+            "color": "#FFF",
+            "fontSize": 20,
+            "marginLeft": 15,
+          }
+        }
+      >
+        50
+         pts
+      </Text>
+    </View>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "alignSelf": "flex-start",
+          "color": "#FFF",
+          "marginLeft": 60,
+          "marginTop": 5,
+        }
+      }
+    >
+      Basics 1
+      : 
+      NaN%
+    </Text>
+  </View>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+  >
+    No Cards to Render
+  </Text>
+</View>
+`;
+
 exports[`WordCards renders correctly 1`] = `
 <View
   style={

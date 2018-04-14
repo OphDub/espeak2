@@ -90,7 +90,11 @@ describe('WordCards', () => {
 
   describe('handleCardLoad', () => {
     it('should return text saying "No Cards to Render" if no words are stored in state', () => {
-      
+      const instance = wrapper.getInstance();
+
+      instance.setState({ words: [] });
+
+      expect(wrapper.toJSON()).toMatchSnapshot();
     })
   })
 })
