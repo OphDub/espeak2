@@ -107,11 +107,29 @@ describe('WordCards', () => {
         stack_id: 1,
         isCurrent: false,
         isCompleted: false
-      }]})
+      }]});
 
       expect(wrapper.toJSON()).toMatchSnapshot();
     })
+
+    it('should return current card if there are cards in the deck', () => {
+      const instance = wrapper.getInstance();
+
+      instance.setState({ words: [{
+        english: 'hi',
+        spanish: 'hola',
+        hint: 'oh-la',
+        stack_id: 1,
+        isCurrent: true,
+        isCompleted: false
+      }]});
+
+      expect(wrapper.toJSON()).toMatchSnapshot();
+    });
   })
   
+  describe('handleCorrectAnswer', () => {
+    
+  })
 })
 
