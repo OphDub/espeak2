@@ -111,6 +111,11 @@ export default class App extends React.Component {
     }
   }
 
+  handleSignOut = () => {
+    auth.signOut();
+    this.setState({user: null});
+  }
+
   handleRegistration = async (userInfo) => {
     const { email, userName, password } = userInfo;
     this.setState({ loading: true });
@@ -161,7 +166,8 @@ export default class App extends React.Component {
     if (this.state.user) {
       return <RootNav
                 screenProps={{
-                  userEmail: this.state.user,
+                  user: this.state.user,
+                  handleSignOut: this.handleSignOut,
                   userPoints: this.state.user.points,
                   handlePoints: this.handlePoints,
                   updateUserPoints: this.updateUserPoints
