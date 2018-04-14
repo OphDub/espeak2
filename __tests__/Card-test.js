@@ -5,8 +5,70 @@ import Adapter from 'enzyme-adapter-react-16';
 import renderer from 'react-test-renderer';
 configure({ adapter: new Adapter() });
 
-it('renders correctly', () => {
-  const word = { english: 'hi', spanish: 'hola', hint: 'o-la' };
-  const wrap = renderer.create(<Card word={word}/>).toJSON();
-  expect(wrap).toMatchSnapshot();
+describe('Card', () => {
+
+  it('renders correctly', () => {
+    const word = { english: 'hi', spanish: 'hola', hint: 'o-la' };
+    const wrap = renderer.create(<Card word={word}/>).toJSON();
+    expect(wrap).toMatchSnapshot();
+  })
+
+  describe('Card methods', () => {
+    
+    it('showAlert should update the state', () => {
+      const word = { english: 'hi', spanish: 'hola', hint: 'o-la' };
+      const wrapper = renderer.create(<Card word={word} />);
+      const inst = wrapper.getInstance();
+      expect(inst.state.showAlert).toEqual(false);
+      inst.showAlert();
+      expect(inst.state.showAlert).toEqual(true);
+    })
+    
+    it('hideAlert should update the state', () => {
+      const word = { english: 'hi', spanish: 'hola', hint: 'o-la' };
+      const wrapper = renderer.create(<Card word={word} />);
+      const inst = wrapper.getInstance();
+
+      inst.setState({showAlert: true});
+      expect(inst.state.showAlert).toEqual(true);
+      inst.hideAlert();
+      expect(inst.state.showAlert).toEqual(false);
+    })
+    
+    it('handleChange should update the answer state', () => {
+      const word = { english: 'hi', spanish: 'hola', hint: 'o-la' };
+      const wrapper = renderer.create(<Card word={word} />);
+      const inst = wrapper.getInstance();
+      expect(inst.state.answer).toEqual('');
+      inst.handleChange('hello');
+      expect(inst.state.answer).toEqual('hello');
+    })
+
+    it('handleSubmit should call the onCorrectAnswer function if answer is correct', () => {
+      const word = { english: 'hi', spanish: 'hola', hint: 'o-la' };
+      const wrapper = renderer.create(<Card word={word} onCorrectAnswer={jest.fn()} />);
+      const inst = wrapper.getInstance();
+      inst.setState({answer: 'hola'})
+      inst.handleSubmit();
+      expect(inst.props.onCorrectAnswer).toHaveBeenCalled();
+    })
+
+    it('handleSubmit should set the showAlert state to true if the answer is incorrect', () => {
+      const word = { english: 'hi', spanish: 'hola', hint: 'o-la' };
+      const wrapper = renderer.create(<Card word={word} onCorrectAnswer={jest.fn()} />);
+      const inst = wrapper.getInstance();
+      inst.setState({ answer: 'ola' });
+      inst.handleSubmit();
+      expect(inst.state.showAlert).toEqual(true);
+    })
+
+    it('handleSubmit should reset the answer state to empty no matter what', () => {
+      const word = { english: 'hi', spanish: 'hola', hint: 'o-la' };
+      const wrapper = renderer.create(<Card word={word} onCorrectAnswer={jest.fn()} />);
+      const inst = wrapper.getInstance();
+      inst.setState({ answer: 'ola'})
+      inst.handleSubmit();
+      expect(inst.state.answer).toEqual('')
+    })
+  })
 })
