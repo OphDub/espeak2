@@ -15,20 +15,18 @@ export default class Home extends Component <Props> {
     this.state = {}
   }
 
-  logout = () => {
-    console.log(this.props)
-  }
-
   render() {
+    const {name, points, stack} = this.props.screenProps.user;
+    const { handleSignOut } = this.props.screenProps;
     return (
       <View style={styles.container}>
         <View style={styles.statsDisplay}>
-          <Text style={styles.listItems}>Username: {this.props.screenProps.userEmail}</Text>
-          <Text style={styles.listItems}>Current Points: </Text>
-          <Text style={styles.listItems}>Current Level:</Text>
+          <Text style={styles.listItems}>Username: {name}</Text>
+          <Text style={styles.listItems}>Current Points: {points}</Text>
+          <Text style={styles.listItems}>Current Level: beginner</Text>
         </View>
         <TouchableOpacity
-          onPress={this.logout}
+          onPress={() => handleSignOut()}
           style={styles.logoutBtn}
         >
           <Text style={styles.buttonText}>LOGOUT</Text>
