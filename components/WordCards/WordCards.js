@@ -36,6 +36,8 @@ export default class WordCards extends Component<Props> {
 
       return {...word, isCurrent: false, isCompleted: false};
     })
+    console.log('words in word cards comp', words);
+
     this.setState({ words })
   }
 
