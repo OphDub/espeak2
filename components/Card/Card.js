@@ -25,7 +25,6 @@ export default class Card extends Component {
   }
 
   handleSubmit = () => {
-    // if incorrect, send some sort of alert to user to try again
     const { answer } = this.state;
     const { onCorrectAnswer, word } = this.props;
     const { spanish } = word;
@@ -40,7 +39,6 @@ export default class Card extends Component {
     this.setState({ answer: '' });
   }
 
-  // Think about changing the cancel button to just get the answer
   render() {
     const {english, spanish, hint} = this.props.word;
     const { showAlert } = this.state;
