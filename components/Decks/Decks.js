@@ -15,33 +15,19 @@ export default class Decks extends Component<Props> {
     title: 'Decks',
   };
 
-  constructor() {
-    super()
-    this.state={
-      decks: []
-    }
-  }
-
-  async componentDidMount() {
-    const promise = await fetch('https://espeak-be.herokuapp.com/api/v1/stack')
-    const decks = await promise.json();
-    this.setState({decks})
-  }
-
   navigateToCards(deck) {
     this.props.navigation.navigate('WordCards', deck)
   }
 
   render() {
+    const { decks } = this.props.screenProps;
+
     return (
       <View style={styles.container}>
         <View style={styles.deckList}>
-          {this.state.decks.map( deck => {
+          {decks.map( deck => {
             const { stack_id }  = this.props.screenProps.user;
             const isActive = deck.id <= stack_id;
-
-            console.log(isActive);
-
             const deckStyle = isActive ? styles.deck : styles.disabled
 
             return (

@@ -24,12 +24,21 @@ const RootNav = StackNavigator(routeConfig);
 type Props = {};
 export default class WordStackNav extends Component<Props> {
   render() {
+    const {
+      handlePoints,
+      userPoints,
+      user,
+      decks,
+      updateUser
+    } = this.props.screenProps;
+
     return (
       <RootNav screenProps={{
-        handlePoints: this.props.screenProps.handlePoints,
-        userPoints: this.props.screenProps.userPoints,
-        user: this.props.screenProps.user,
-        updateUserPoints: this.props.screenProps.updateUserPoints
+        handlePoints,
+        userPoints,
+        user,
+        decks,
+        updateUser
       }}/>
     )
   }

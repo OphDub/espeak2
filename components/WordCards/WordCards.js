@@ -60,7 +60,7 @@ export default class WordCards extends Component<Props> {
     const currentCard = this.state.words.find(card => card.isCurrent === true);
 
     if (!currentCard) {
-      this.props.screenProps.updateUserPoints();
+      this.props.screenProps.updateUser();
 
       return (
         <View style={styles.endMsgCont}>
