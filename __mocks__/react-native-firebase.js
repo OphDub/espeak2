@@ -84,8 +84,21 @@ export default class RNFirebase {
   }
 
   static auth() {
-    console.log('hit')
-    return true;
+    return {
+      signOut: () => true,
+      signInWithEmailAndPassword: (email, password) => {
+        return {
+          uid: 12345
+        }
+      },
+      createUserWithEmailAndPassword: (email, password) => {
+        return {
+          uid: 54321,
+          email: 'pophus@notpophanda.com',
+          
+        }
+      }
+    }
   }
 
   static reset() {
