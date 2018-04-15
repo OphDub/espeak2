@@ -77,17 +77,30 @@ export default class App extends React.Component {
 
   updateUser = async () => {
     try {
-      const points = this.state.user.points;
-      const userId = this.state.user.firebase_id;
+      const stack_id = this.updateUserStack();
+      const { points, userId } = this.state.user;
       const url = `https://espeak-be-opa.herokuapp.com/api/v1/users/${userId}`;
 
-      verbAndParse('PATCH', url, { points });
+      await verbAndParse('PATCH', url, { points, stack_id });
+      this.setState({ user: {...this.state.user, stack_id }});
     } catch (error) {
       this.setState({
         showAlert: true,
         alertMsg: error.message
       });
     }
+  }
+
+  updateUserStack = () => {
+    let { user } = this.state;
+    let { stack_id } = user;
+    const lastStack = this.state.decks[this.state.decks.length - 1];
+
+    if (stack_id < lastStack.id) {
+      stack_id++;
+    }
+
+    return stack_id;
   }
 
   handleLogin = async (email, password) => {
