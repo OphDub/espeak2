@@ -51,7 +51,12 @@ export default class App extends React.Component {
       loading: false,
       showAlert: false,
       alertMsg: '',
+      decks: [],
     };
+  }
+
+  componentDidMount = async () => {
+    await this.getDecks();
   }
 
   showAlert = () => {
@@ -70,19 +75,32 @@ export default class App extends React.Component {
     this.setState({ user });
   }
 
-  updateUserPoints = async () => {
+  updateUser = async () => {
     try {
-      const points = this.state.user.points;
-      const userId = this.state.user.firebase_id;
+      const stack_id = this.updateUserStack();
+      const { points, userId } = this.state.user;
       const url = `https://espeak-be-opa.herokuapp.com/api/v1/users/${userId}`;
 
-      verbAndParse('PATCH', url, { points });
+      await verbAndParse('PATCH', url, { points, stack_id });
+      this.setState({ user: {...this.state.user, stack_id }});
     } catch (error) {
       this.setState({
         showAlert: true,
         alertMsg: error.message
       });
     }
+  }
+
+  updateUserStack = () => {
+    let { user } = this.state;
+    let { stack_id } = user;
+    const lastStack = this.state.decks[this.state.decks.length - 1];
+
+    if (stack_id < lastStack.id) {
+      stack_id++;
+    }
+
+    return stack_id;
   }
 
   handleLogin = async (email, password) => {
@@ -95,6 +113,12 @@ export default class App extends React.Component {
     } catch (error) {
       this.setState({ showAlert:true, alertMsg:error.message });
     }
+  }
+
+  getDecks = async () => {
+    const url = 'https://espeak-be.herokuapp.com/api/v1/stack';
+    const decks = await verbAndParse('GET', url);
+    await this.setState({ decks });
   }
 
   beLogin = async (userId) => {
@@ -170,7 +194,8 @@ export default class App extends React.Component {
                   handleSignOut: this.handleSignOut,
                   userPoints: this.state.user.points,
                   handlePoints: this.handlePoints,
-                  updateUserPoints: this.updateUserPoints
+                  updateUser: this.updateUser,
+                  decks: this.state.decks,
                 }}
               />
     } else {

@@ -19,6 +19,7 @@ export default class WordCards extends Component<Props> {
       stack: this.props.navigation.state.params,
       words: [],
       currentCardId: 0,
+      isFinished: false,
     }
   }
   static navigationOptions = {
@@ -60,8 +61,6 @@ export default class WordCards extends Component<Props> {
     const currentCard = this.state.words.find(card => card.isCurrent === true);
 
     if (!currentCard) {
-      this.props.screenProps.updateUserPoints();
-
       return (
         <View style={styles.endMsgCont}>
           <Text style={styles.endMsg}>Great job!</Text>
@@ -83,6 +82,7 @@ export default class WordCards extends Component<Props> {
 
   handleCorrectAnswer = (word) => {
     const wordIndex = this.state.words.indexOf(word);
+    let isFinished = wordIndex === this.state.words.length - 1;
     const words = this.state.words.map((word, index) => {
       if (index === wordIndex) {
         return {...word, isCurrent: false}
@@ -94,6 +94,11 @@ export default class WordCards extends Component<Props> {
     });
 
     this.props.screenProps.handlePoints();
+
+    if (isFinished) {
+      this.props.screenProps.updateUser();
+    }
+
     this.setState({
       words,
       currentCardId: wordIndex + 1
