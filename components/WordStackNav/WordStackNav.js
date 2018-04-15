@@ -28,6 +28,7 @@ export default class WordStackNav extends Component<Props> {
       <RootNav screenProps={{
         handlePoints: this.props.screenProps.handlePoints,
         userPoints: this.props.screenProps.userPoints,
+        user: this.props.screenProps.user,
         updateUserPoints: this.props.screenProps.updateUserPoints
       }}/>
     )

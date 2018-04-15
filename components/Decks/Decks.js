@@ -37,14 +37,22 @@ export default class Decks extends Component<Props> {
       <View style={styles.container}>
         <View style={styles.deckList}>
           {this.state.decks.map( deck => {
+            const { stack_id }  = this.props.screenProps.user;
+            const isActive = deck.id <= stack_id;
+
+            console.log(isActive);
+
+            const deckStyle = isActive ? styles.deck : styles.disabled
+
             return (
               <TouchableOpacity 
                 onPress={() => this.navigateToCards(deck)}
+                disabled={!isActive}
                 value={deck.id}
-                style={styles.deck} >
+                style={deckStyle} >
                 <Text style={styles.deckText}>
                   {deck.category}
-                </Text>             
+                </Text>
               </TouchableOpacity>
             )
           })}
@@ -76,6 +84,12 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.7,
     shadowOffset: { width: 2, height: 2 },
     shadowRadius: 4,
+  },
+  disabled: {
+    backgroundColor: '#B7B2B8',
+    padding: 5,
+    borderRadius: 8,
+    margin: 10,
   },
   deckText: {
     fontSize: 20,
