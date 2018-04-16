@@ -64,7 +64,7 @@ export default class App extends React.Component {
   }
 
   hideAlert = () => {
-    this.setState({ showAlert: false });
+    this.setState({ showAlert: false, loading: false });
   }
 
   handlePoints = () => {
@@ -111,7 +111,11 @@ export default class App extends React.Component {
 
       await this.beLogin(user.uid);
     } catch (error) {
-      this.setState({ showAlert:true, alertMsg:error.message });
+      this.setState({ 
+        showAlert: true,
+        alertMsg:error.message,
+        loaing: false
+      });
     }
   }
 
@@ -129,7 +133,8 @@ export default class App extends React.Component {
     } catch (error) {
       this.setState({
         showAlert: true,
-        alertMsg: `Invalid user name or password.`
+        alertMsg: `Invalid user name or password.`,
+        loading: false
       })
     }
   }
@@ -150,7 +155,8 @@ export default class App extends React.Component {
     } catch (error) {
       this.setState({
         showAlert: true,
-        alertMsg: error.message
+        alertMsg: error.message,
+        loading: false
       });
     }
   }
@@ -171,7 +177,8 @@ export default class App extends React.Component {
     } catch (error) {
       this.setState({
         showAlert: true,
-        alertMsg: error.message
+        alertMsg: error.message,
+        loading: false
       });
     }
   }
@@ -209,6 +216,10 @@ export default class App extends React.Component {
             onConfirmPressed={() => {
               this.hideAlert();
             }}/>
+            <AwesomeAlert 
+              show={this.state.loading}
+              showProgress={true}
+            />
         </View>
       )
     }
