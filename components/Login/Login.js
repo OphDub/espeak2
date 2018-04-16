@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
+  Image,
   Text,
   View,
   TextInput,
@@ -8,6 +9,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Register from '../Register/Register';
+const logo = `https://i.imgur.com/ana1fGy.png`;
 
 type Props = {};
 export default class Login extends Component <Props> {
@@ -23,9 +25,11 @@ export default class Login extends Component <Props> {
   renderLogin = () => {
     return (
       <View style={styles.container}>
-        <Text>
-          Welcome! Sign In:
+        <Text style={styles.logoText}>
+          ESPEAK
         </Text>
+        <Image  style={styles.logo}
+                source={{ uri: logo }}/>
         <TextInput
           style={styles.input}
           value={this.state.email}
@@ -40,7 +44,7 @@ export default class Login extends Component <Props> {
         <TouchableOpacity
           onPress={(email, password) => this.props.handleLogin(this.state.email, this.state.password)}
           style={styles.loginBtn}>
-            <Text>LOGIN</Text>
+            <Text style={styles.loginBtnText}>LOGIN</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => this.toggleRegistration()}
@@ -84,6 +88,14 @@ export default class Login extends Component <Props> {
 }
 
 const styles = StyleSheet.create({
+  logo: {
+    width: 100,
+    height: 100,
+    margin: 10,
+  },
+  logoText: {
+    fontSize: 20
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -94,7 +106,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#CFCCD0',
     margin: 10,
     paddingVertical: 10,
-    paddingHorizontal: 5,
+    paddingHorizontal: 8,
     padding: 10,
     borderRadius: 8,
     width: 150,
@@ -112,6 +124,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.7,
     shadowOffset: { width: 2, height: 2 },
     shadowRadius: 4,
+  },
+  loginBtnText: {
+    color: '#FFFFFF'
   },
   registerBtn: {
     display: 'flex',
