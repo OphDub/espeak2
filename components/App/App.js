@@ -125,7 +125,7 @@ export default class App extends React.Component {
     try {
       const initialFetch = await fetch(`https://espeak-be-opa.herokuapp.com/api/v1/users/${userId}`);
       const user = await initialFetch.json();
-
+      console.log(user)
       this.setState({ user: user[0], loading: false });
     } catch (error) {
       this.setState({
@@ -148,7 +148,6 @@ export default class App extends React.Component {
       const user = await auth.createUserWithEmailAndPassword(email, password);
 
       await this.beRegistration(user, userName);
-      console.log('Firebase user created', user);
     } catch (error) {
       this.setState({
         showAlert: true,
@@ -169,7 +168,6 @@ export default class App extends React.Component {
       };
       const url = 'https://espeak-be-opa.herokuapp.com/api/v1/users/';
       const user = await verbAndParse('POST', url, newUser);
-      console.log('Backend user', user);
       this.setState({ user: newUser, loading: false });
     } catch (error) {
       this.setState({

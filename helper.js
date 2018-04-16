@@ -7,6 +7,6 @@ export const verbAndParse = async (verb, url, data) => {
     },
     method: `${verb}`
   });
-
-  return await initialFetch.json();
+  const userData = await initialFetch.json()
+  return userData;
 };
