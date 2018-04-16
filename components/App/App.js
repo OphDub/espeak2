@@ -125,7 +125,6 @@ export default class App extends React.Component {
     try {
       const initialFetch = await fetch(`https://espeak-be-opa.herokuapp.com/api/v1/users/${userId}`);
       const user = await initialFetch.json();
-      console.log(user)
       this.setState({ user: user[0], loading: false });
     } catch (error) {
       this.setState({
@@ -176,13 +175,6 @@ export default class App extends React.Component {
       });
     }
   }
-
- /*   showCondition = () => {*/
-      //return <RootNav
-                //screenProps={{userEmail: this.state.user}}
-              ///>
-
-  /*}*/
 
   showCondition = () => {
     if (this.state.user) {
