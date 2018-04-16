@@ -18,7 +18,7 @@ describe('App', () => {
     const wrapper = renderer.create(<App />);
     const inst = wrapper.getInstance();
 
-    expect(inst.state).toEqual({user: null, loading: false, showAlert: false, alertMsg: ''})
+    expect(inst.state).toEqual({ "alertMsg": "", "decks": [], "loading": false, "showAlert": false, "user": null })
   })
 
   describe('App methods', () => {
