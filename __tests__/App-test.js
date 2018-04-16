@@ -52,14 +52,14 @@ describe('App', () => {
         stack_id: 1, 
         firebase_id: 12345
       };
-      
+
       inst.setState({ user });
       expect(inst.state.user.points).toEqual(0);
       inst.handlePoints();
       expect(inst.state.user.points).toEqual(10);
     })
   
-    it.only('the handleLogin function should set the loading state to true and call beLogin and update the state', async () => {
+    it('the handleLogin function should set the loading state to true and call beLogin and update the state', async () => {
       const user = {
         username: 'pophus',
         email: 'pophus@notpophanda.com',
@@ -79,8 +79,23 @@ describe('App', () => {
       expect(inst.state.user).toEqual({ "email": "pophus@notpophanda.com", "firebase_id": 12345, "points": 0, "stack_id": 1, "username": "pophus" })
     })
 
-    it('beLogin function should do somethng', () => {
-
+    it('beLogin call fetch and update the user in state', async () => {
+      const user = {
+        username: 'pophus',
+        email: 'pophus@notpophanda.com',
+        points: 0,
+        stack_id: 1,
+        firebase_id: 12345
+      };
+      global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        status: 200,
+        json: () => Promise.resolve([user])
+      }));
+      const wrapper = renderer.create(<App />);
+      const inst = wrapper.getInstance();
+      expect(inst.state.user).toEqual(null);
+      await inst.beLogin(2);
+      expect(inst.state.user).toEqual(user)
     })
 
     it('handleSignOut should set the user to null', () => {
