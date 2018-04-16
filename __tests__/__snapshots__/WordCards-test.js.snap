@@ -19,6 +19,9 @@ exports[`WordCards handleCardLoad should return current card if there are cards 
         "height": 63,
         "justifyContent": "center",
         "overflow": "hidden",
+        "position": "absolute",
+        "top": 0,
+        "width": "100%",
       }
     }
   >
@@ -248,6 +251,9 @@ exports[`WordCards handleCardLoad should return end screen if there is no curren
         "height": 63,
         "justifyContent": "center",
         "overflow": "hidden",
+        "position": "absolute",
+        "top": 0,
+        "width": "100%",
       }
     }
   >
@@ -413,6 +419,9 @@ exports[`WordCards handleCardLoad should return text saying "No Cards to Render"
         "height": 63,
         "justifyContent": "center",
         "overflow": "hidden",
+        "position": "absolute",
+        "top": 0,
+        "width": "100%",
       }
     }
   >
@@ -515,6 +524,9 @@ exports[`WordCards renders correctly 1`] = `
         "height": 63,
         "justifyContent": "center",
         "overflow": "hidden",
+        "position": "absolute",
+        "top": 0,
+        "width": "100%",
       }
     }
   >
