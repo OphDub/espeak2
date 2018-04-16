@@ -40,7 +40,7 @@ export default class Login extends Component <Props> {
         <TouchableOpacity
           onPress={(email, password) => this.props.handleLogin(this.state.email, this.state.password)}
           style={styles.loginBtn}>
-            <Text>Login</Text>
+            <Text>LOGIN</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => this.toggleRegistration()}
@@ -94,9 +94,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#CFCCD0',
     margin: 10,
     paddingVertical: 10,
-    borderRadius: 4,
+    paddingHorizontal: 5,
+    padding: 10,
+    borderRadius: 8,
     width: 150,
-    height: 25,
   },
   loginBtn: {
     display: 'flex',
