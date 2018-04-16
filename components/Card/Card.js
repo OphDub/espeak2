@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, StyleSheet, Text, View, TextInput } from 'react-native';
 import AwesomeAlert from 'react-native-awesome-alerts';
+import { verbAndParse } from '../../helper';
 
 type Props = {};
 export default class Card extends Component {
@@ -9,6 +10,7 @@ export default class Card extends Component {
     this.state = {
       answer: '',
       showAlert: false,
+      showHint: false,
     }
   }
 
@@ -20,8 +22,21 @@ export default class Card extends Component {
     this.setState({ showAlert: false })
   }
 
+  showHint = () => {
+    this.setState({ showHint: true });
+  }
+
+  hideHint = () => {
+    this.setState({ showHint: false })
+  }
+
   handleChange = (text) => {
     this.setState({answer: text})
+  }
+  
+  handleHint = () => {
+    this.showHint();
+    // patch to the BE to update the loss of points
   }
 
   handleSubmit = () => {
@@ -31,8 +46,6 @@ export default class Card extends Component {
     if (answer.toLowerCase() === spanish) {
       onCorrectAnswer(word);
     } else {
-      // send alert to user
-      console.log('wrong answer');
       this.showAlert();
     }
 
@@ -40,8 +53,8 @@ export default class Card extends Component {
   }
 
   render() {
-    const {english, spanish, hint} = this.props.word;
-    const { showAlert } = this.state;
+    const { english, spanish, hint } = this.props.word;
+    const { showAlert, showHint } = this.state;
 
     return (
       <View style={styles.container}>
@@ -60,11 +73,35 @@ export default class Card extends Component {
           style={styles.spanInput}
         />
         <TouchableOpacity
+          onPress={() => this.handleHint()}
+          style={styles.submitBtn}
+        >
+          <Text style={styles.btnText}>Need a hint?</Text>
+        </TouchableOpacity> 
+        <TouchableOpacity
           onPress={() => this.handleSubmit()}
           style={styles.submitBtn}
         >
           <Text style={styles.btnText}>SUBMIT</Text>
         </TouchableOpacity> 
+        <AwesomeAlert
+          show={showHint}
+          showProgress={false}
+          title="Here's a hint"
+          message={hint}
+          closeOnTouchOutside={true}
+          closeOnHardwareBackPress={false}
+          showCancelButton={false}
+          showConfirmButton={true}
+          confirmText="OK, got it!"
+          confirmButtonColor="#3AAFb9"
+          onCancelPressed={() => {
+            this.hideHint();
+          }}
+          onConfirmPressed={() => {
+            this.hideHint();
+          }}
+        />
         <AwesomeAlert
           show={showAlert}
           showProgress={false}
