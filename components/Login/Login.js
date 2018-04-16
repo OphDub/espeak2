@@ -45,7 +45,7 @@ export default class Login extends Component <Props> {
         <TouchableOpacity
           onPress={() => this.toggleRegistration()}
           style={styles.registerBtn}>
-            <Text>New user? Register</Text>
+            <Text>New? Register here</Text>
         </TouchableOpacity>
       </View>
     )
@@ -91,19 +91,26 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   input: {
-    backgroundColor: 'grey',
+    backgroundColor: '#CFCCD0',
     margin: 10,
+    paddingVertical: 10,
+    borderRadius: 4,
     width: 150,
     height: 25,
   },
   loginBtn: {
     display: 'flex',
+    width: 150,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'purple',
+    backgroundColor: '#3AAFB9',
+    paddingVertical: 10,
+    borderRadius: 8,
     margin: 10,
-    width: 150,
-    height: 25,
+    shadowColor: '#979797',
+    shadowOpacity: 0.7,
+    shadowOffset: { width: 2, height: 2 },
+    shadowRadius: 4,
   },
   registerBtn: {
     display: 'flex',
