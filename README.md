@@ -17,13 +17,15 @@ Clone down the repo:
 
 `npm install`
 
-`npm start`
+`npm run ios`
 
 ## Tests
 
 This project was developed using using Jest and Enzyme testing utilities. To run the test suites for this project:
 
 `npm test`
+
+`jest`
 
 ## Contributors
 
