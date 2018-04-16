@@ -32,7 +32,7 @@ describe('WordCards', () => {
 
     mockScreenProps = {
       handlePoints: jest.fn(),
-      updateUserPoints: jest.fn(),
+      updateUser: jest.fn(),
       userPoints: 50,
     };
 
@@ -89,32 +89,19 @@ describe('WordCards', () => {
   })
 
   describe('handleCardLoad', () => {
-    it('should return text saying "No Cards to Render" if no words are stored in state', () => {
-      const instance = wrapper.getInstance();
+    let instance;
 
+    beforeEach(() => {
+      instance = wrapper.getInstance();
+    })
+
+    it('should return text saying "No Cards to Render" if no words are stored in state', () => {
       instance.setState({ words: [] });
 
       expect(wrapper.toJSON()).toMatchSnapshot();
     })
 
-    it('should call updateUserPoints if there are no current cards left in deck', () => {
-      const instance = wrapper.getInstance();
-
-      instance.setState({ words: [{
-        english: 'hi',
-        spanish: 'hola',
-        hint: 'oh-la',
-        stack_id: 1,
-        isCurrent: false,
-        isCompleted: false
-      }]});
-
-      expect(mockScreenProps.updateUserPoints).toHaveBeenCalled();
-    })
-
     it('should return end screen if there is no current card left in deck', () => {
-      const instance = wrapper.getInstance();
-
       instance.setState({ words: [{
         english: 'hi',
         spanish: 'hola',
@@ -128,8 +115,6 @@ describe('WordCards', () => {
     })
 
     it('should return current card if there are cards in the deck', () => {
-      const instance = wrapper.getInstance();
-
       instance.setState({ words: [{
         english: 'hi',
         spanish: 'hola',
@@ -144,17 +129,12 @@ describe('WordCards', () => {
   })
   
   describe('handleCorrectAnswer', () => {
-    it('should call handlePoints when handleCorrectAnswer is called', () => {
-      const instance = wrapper.getInstance();
+    let ogWords;
+    let instance;
+    let word;
 
-      instance.handleCorrectAnswer();
-
-      expect(mockScreenProps.handlePoints).toHaveBeenCalled();
-    })
-
-    it('should update state with new words and currentCardId', () => {
-      const instance = wrapper.getInstance();
-      const ogWords = [
+    beforeAll(() => {
+      ogWords = [
         {
           english: 'hi',
           spanish: 'hola',
@@ -171,6 +151,27 @@ describe('WordCards', () => {
           isCompleted: false
         }
       ];
+      word = ogWords[0];
+    })
+
+    beforeEach(() => {
+      instance = wrapper.getInstance();
+      instance.setState({ words: ogWords });
+    })
+
+    it('should call handlePoints when handleCorrectAnswer is called', () => {
+      instance.handleCorrectAnswer(word);
+
+      expect(mockScreenProps.handlePoints).toHaveBeenCalled();
+    })
+
+    it('should call updateUserPoints if there are no current cards left in deck', () => {
+      instance.handleCorrectAnswer(ogWords[1]);
+
+      expect(mockScreenProps.updateUser).toHaveBeenCalled();
+    })
+
+    it('should update state with new words and currentCardId', () => {
       const expected = [
         {
           english: 'hi',
@@ -188,9 +189,6 @@ describe('WordCards', () => {
           isCompleted: false
         }
       ]; 
-      const word = ogWords[0];
-
-      instance.setState({ words: ogWords })
 
       expect(instance.state.words).toEqual(ogWords);
       

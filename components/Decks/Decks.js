@@ -25,7 +25,7 @@ export default class Decks extends Component<Props> {
     return (
       <View style={styles.container}>
         <View style={styles.deckList}>
-          {decks.map( deck => {
+          {decks.map( (deck, index) => {
             const { stack_id }  = this.props.screenProps.user;
             const isActive = deck.id <= stack_id;
             const deckStyle = isActive ? styles.deck : styles.disabled
@@ -35,7 +35,8 @@ export default class Decks extends Component<Props> {
                 onPress={() => this.navigateToCards(deck)}
                 disabled={!isActive}
                 value={deck.id}
-                style={deckStyle} >
+                style={deckStyle}
+                key={index} >
                 <Text style={styles.deckText}>
                   {deck.category}
                 </Text>
