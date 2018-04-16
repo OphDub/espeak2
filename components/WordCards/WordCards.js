@@ -59,7 +59,8 @@ export default class WordCards extends Component<Props> {
     }
 
     const currentCard = this.state.words.find(card => card.isCurrent === true);
-
+    const { handleHintPoints } = this.props.screenProps;
+    
     if (!currentCard) {
       return (
         <View style={styles.endMsgCont}>
@@ -77,6 +78,7 @@ export default class WordCards extends Component<Props> {
     return <Card
       word={currentCard}
       onCorrectAnswer={this.handleCorrectAnswer}
+      onHintPoints={ handleHintPoints }
     />
   }
 

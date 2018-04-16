@@ -9,6 +9,7 @@ export default class Card extends Component {
     this.state = {
       answer: '',
       showAlert: false,
+      showHint: false,
     }
   }
 
@@ -20,8 +21,21 @@ export default class Card extends Component {
     this.setState({ showAlert: false })
   }
 
+  showHint = () => {
+    this.setState({ showHint: true });
+  }
+
+  hideHint = () => {
+    this.setState({ showHint: false })
+  }
+
   handleChange = (text) => {
     this.setState({answer: text})
+  }
+  
+  handleHideHint = () => {
+    this.props.onHintPoints();    
+    this.hideHint();
   }
 
   handleSubmit = () => {
@@ -31,8 +45,6 @@ export default class Card extends Component {
     if (answer.toLowerCase() === spanish) {
       onCorrectAnswer(word);
     } else {
-      // send alert to user
-      console.log('wrong answer');
       this.showAlert();
     }
 
@@ -40,8 +52,8 @@ export default class Card extends Component {
   }
 
   render() {
-    const {english, spanish, hint} = this.props.word;
-    const { showAlert } = this.state;
+    const { english, spanish, hint } = this.props.word;
+    const { showAlert, showHint } = this.state;
 
     return (
       <View style={styles.container}>
@@ -60,11 +72,32 @@ export default class Card extends Component {
           style={styles.spanInput}
         />
         <TouchableOpacity
+          onPress={() => this.showHint()}
+          style={styles.submitBtn}
+        >
+          <Text style={styles.btnText}>Need a hint?</Text>
+        </TouchableOpacity> 
+        <TouchableOpacity
           onPress={() => this.handleSubmit()}
           style={styles.submitBtn}
         >
           <Text style={styles.btnText}>SUBMIT</Text>
         </TouchableOpacity> 
+        <AwesomeAlert
+          show={showHint}
+          showProgress={false}
+          title="Here's a hint"
+          message={hint}
+          closeOnTouchOutside={false}
+          closeOnHardwareBackPress={false}
+          showCancelButton={false}
+          showConfirmButton={true}
+          confirmText="OK, got it!"
+          confirmButtonColor="#3AAFb9"
+          onConfirmPressed={() => {
+            this.handleHideHint();
+          }}
+        />
         <AwesomeAlert
           show={showAlert}
           showProgress={false}

@@ -75,6 +75,16 @@ export default class App extends React.Component {
     this.setState({ user });
   }
 
+  handleHintPoints = async () => {
+    console.log('dealing with hints');
+    const { user } = this.state;
+
+    user.points -= 5;
+
+    await this.setState({ user });
+    this.updateUser();
+  }
+
   updateUser = async () => {
     try {
       const stack_id = this.updateUserStack();
@@ -191,6 +201,7 @@ export default class App extends React.Component {
                   handleSignOut: this.handleSignOut,
                   userPoints: this.state.user.points,
                   handlePoints: this.handlePoints,
+                  handleHintPoints: this.handleHintPoints,
                   updateUser: this.updateUser,
                   decks: this.state.decks,
                 }}

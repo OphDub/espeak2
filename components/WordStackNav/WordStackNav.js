@@ -26,6 +26,7 @@ export default class WordStackNav extends Component<Props> {
   render() {
     const {
       handlePoints,
+      handleHintPoints,
       userPoints,
       user,
       decks,
@@ -35,6 +36,7 @@ export default class WordStackNav extends Component<Props> {
     return (
       <RootNav screenProps={{
         handlePoints,
+        handleHintPoints,
         userPoints,
         user,
         decks,
