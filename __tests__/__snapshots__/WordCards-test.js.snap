@@ -225,6 +225,55 @@ exports[`WordCards handleCardLoad should return current card if there are cards 
           }
         }
       >
+        Need a hint?
+      </Text>
+    </View>
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      collapsable={undefined}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "backgroundColor": "#3AAFB9",
+          "borderRadius": 8,
+          "marginTop": 10,
+          "opacity": 1,
+          "padding": 10,
+          "shadowColor": "#979797",
+          "shadowOffset": Object {
+            "height": 2,
+            "width": 2,
+          },
+          "shadowOpacity": 0.7,
+          "shadowRadius": 4,
+        }
+      }
+      testID={undefined}
+      tvParallaxProperties={undefined}
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#FFF",
+          }
+        }
+      >
         SUBMIT
       </Text>
     </View>

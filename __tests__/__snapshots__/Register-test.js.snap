@@ -11,12 +11,31 @@ exports[`REGISTER renders correctly 1`] = `
     }
   }
 >
+  <Image
+    source={
+      Object {
+        "uri": "https://i.imgur.com/ana1fGy.png",
+      }
+    }
+    style={
+      Object {
+        "height": 100,
+        "margin": 10,
+        "width": 100,
+      }
+    }
+  />
   <Text
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
+    style={
+      Object {
+        "margin": 10,
+      }
+    }
   >
-    Sign Up for an Account
+    Join eSpeak and learn Spanish!
   </Text>
   <TextInput
     allowFontScaling={true}
@@ -24,10 +43,13 @@ exports[`REGISTER renders correctly 1`] = `
     placeholder="email"
     style={
       Object {
-        "backgroundColor": "grey",
-        "height": 25,
+        "backgroundColor": "#CFCCD0",
+        "borderRadius": 8,
         "margin": 10,
-        "width": 150,
+        "padding": 10,
+        "paddingHorizontal": 8,
+        "paddingVertical": 10,
+        "width": 200,
       }
     }
     value=""
@@ -38,10 +60,13 @@ exports[`REGISTER renders correctly 1`] = `
     placeholder="your name"
     style={
       Object {
-        "backgroundColor": "grey",
-        "height": 25,
+        "backgroundColor": "#CFCCD0",
+        "borderRadius": 8,
         "margin": 10,
-        "width": 150,
+        "padding": 10,
+        "paddingHorizontal": 8,
+        "paddingVertical": 10,
+        "width": 200,
       }
     }
     value=""
@@ -53,10 +78,13 @@ exports[`REGISTER renders correctly 1`] = `
     secureTextEntry={true}
     style={
       Object {
-        "backgroundColor": "grey",
-        "height": 25,
+        "backgroundColor": "#CFCCD0",
+        "borderRadius": 8,
         "margin": 10,
-        "width": 150,
+        "padding": 10,
+        "paddingHorizontal": 8,
+        "paddingVertical": 10,
+        "width": 200,
       }
     }
     value=""
@@ -68,10 +96,13 @@ exports[`REGISTER renders correctly 1`] = `
     secureTextEntry={true}
     style={
       Object {
-        "backgroundColor": "grey",
-        "height": 25,
+        "backgroundColor": "#CFCCD0",
+        "borderRadius": 8,
         "margin": 10,
-        "width": 150,
+        "padding": 10,
+        "paddingHorizontal": 8,
+        "paddingVertical": 10,
+        "width": 200,
       }
     }
     value=""
@@ -96,13 +127,21 @@ exports[`REGISTER renders correctly 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "backgroundColor": "teal",
+        "backgroundColor": "#3AAFB9",
+        "borderRadius": 8,
         "display": "flex",
-        "height": 25,
         "justifyContent": "center",
         "margin": 10,
         "opacity": 1,
-        "width": 150,
+        "paddingVertical": 10,
+        "shadowColor": "#979797",
+        "shadowOffset": Object {
+          "height": 2,
+          "width": 2,
+        },
+        "shadowOpacity": 0.7,
+        "shadowRadius": 4,
+        "width": 200,
       }
     }
     testID={undefined}
@@ -141,7 +180,7 @@ exports[`REGISTER renders correctly 1`] = `
         "justifyContent": "center",
         "margin": 10,
         "opacity": 1,
-        "width": 150,
+        "width": 200,
       }
     }
     testID={undefined}
