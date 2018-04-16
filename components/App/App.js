@@ -129,6 +129,7 @@ export default class App extends React.Component {
     try {
       const initialFetch = await fetch(`https://espeak-be-opa.herokuapp.com/api/v1/users/${userId}`);
       const user = await initialFetch.json();
+      console.log(user[0]);
       this.setState({ user: user[0], loading: false });
     } catch (error) {
       this.setState({
@@ -167,12 +168,14 @@ export default class App extends React.Component {
       const newUser = {
         name: userName,
         email: email,
-        points: 0,
+        points: "0",
         stack_id: 1,
         firebase_id: uid
       };
+
       const url = 'https://espeak-be-opa.herokuapp.com/api/v1/users/';
       const user = await verbAndParse('POST', url, newUser);
+      newUser.points = parseInt(newUser.points)
       this.setState({ user: newUser, loading: false });
     } catch (error) {
       this.setState({
