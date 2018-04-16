@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
+  Image,
   Text,
   View,
   TextInput,
@@ -8,6 +9,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import AwesomeAlert from 'react-native-awesome-alerts';
+const logo = `https://i.imgur.com/ana1fGy.png`;
 
 type Props = {};
 export default class Register extends Component <Props>{
@@ -59,7 +61,9 @@ export default class Register extends Component <Props>{
   render() {
     return (
       <View style={styles.container}>
-        <Text>Sign Up for an Account</Text>
+        <Image  style={styles.logo}
+                source={{ uri: logo }}/>
+        <Text style={styles.joinText}>Join eSpeak and learn Spanish!</Text>
         <TextInput
           style={styles.input}
           value={this.state.email}
@@ -119,27 +123,43 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  input: {
-    backgroundColor: 'grey',
+  logo: {
+    width: 100,
+    height: 100,
     margin: 10,
-    width: 150,
-    height: 25,
+  },
+  joinText: {
+    margin: 10,
+  },
+  input: {
+    backgroundColor: '#CFCCD0',
+    margin: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 8,
+    padding: 10,
+    borderRadius: 8,
+    width: 200,
   },
   registerBtn: {
     display: 'flex',
+    width: 200,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'teal',
+    backgroundColor: '#3AAFB9',
+    paddingVertical: 10,
+    borderRadius: 8,
     margin: 10,
-    width: 150,
-    height: 25,
+    shadowColor: '#979797',
+    shadowOpacity: 0.7,
+    shadowOffset: { width: 2, height: 2 },
+    shadowRadius: 4,
   },
   loginBtn: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     margin: 10,
-    width: 150,
+    width: 200,
     height: 25,
   }
 });
