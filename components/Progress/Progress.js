@@ -52,7 +52,10 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex',
     justifyContent: 'center',
+    position: 'absolute',
+    top: 0,
     height: 63,
+    width: '100%',
     alignItems: 'center',
     overflow: 'hidden',
     backgroundColor: '#B47AEA'
