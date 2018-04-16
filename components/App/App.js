@@ -75,21 +75,19 @@ export default class App extends React.Component {
     this.setState({ user });
   }
 
-  handleHintPoints = async () => {
-    console.log('dealing with hints');
+  handleHintPoints = () => {
     const { user } = this.state;
 
     user.points -= 5;
 
-    await this.setState({ user });
-    this.updateUser();
+    this.setState({ user });
   }
 
   updateUser = async () => {
     try {
       const stack_id = this.updateUserStack();
-      const { points, userId } = this.state.user;
-      const url = `https://espeak-be-opa.herokuapp.com/api/v1/users/${userId}`;
+      const { points, firebase_id } = this.state.user;
+      const url = `https://espeak-be-opa.herokuapp.com/api/v1/users/${firebase_id}`;
 
       await verbAndParse('PATCH', url, { points, stack_id });
       this.setState({ user: {...this.state.user, stack_id }});
@@ -121,7 +119,7 @@ export default class App extends React.Component {
 
       await this.beLogin(user.uid);
     } catch (error) {
-      this.setState({ 
+      this.setState({
         showAlert: true,
         alertMsg:error.message,
         loaing: false
