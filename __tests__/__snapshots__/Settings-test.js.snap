@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`SETTINGS renders correctly 1`] = `
 <View
   style={
     Object {
@@ -47,7 +47,6 @@ exports[`renders correctly 1`] = `
       }
     >
       Username: 
-      a@z.com
     </Text>
     <Text
       accessible={true}
@@ -62,6 +61,7 @@ exports[`renders correctly 1`] = `
       }
     >
       Current Points: 
+      0
     </Text>
     <Text
       accessible={true}
@@ -75,7 +75,7 @@ exports[`renders correctly 1`] = `
         }
       }
     >
-      Current Level:
+      Current Level: beginner
     </Text>
   </View>
   <View
