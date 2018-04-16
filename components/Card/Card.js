@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, StyleSheet, Text, View, TextInput } from 'react-native';
 import AwesomeAlert from 'react-native-awesome-alerts';
-import { verbAndParse } from '../../helper';
 
 type Props = {};
 export default class Card extends Component {
@@ -34,9 +33,9 @@ export default class Card extends Component {
     this.setState({answer: text})
   }
   
-  handleHint = () => {
-    this.showHint();
-    // patch to the BE to update the loss of points
+  handleHideHint = () => {
+    this.props.onHintPoints();    
+    this.hideHint();
   }
 
   handleSubmit = () => {
@@ -73,7 +72,7 @@ export default class Card extends Component {
           style={styles.spanInput}
         />
         <TouchableOpacity
-          onPress={() => this.handleHint()}
+          onPress={() => this.showHint()}
           style={styles.submitBtn}
         >
           <Text style={styles.btnText}>Need a hint?</Text>
@@ -89,17 +88,14 @@ export default class Card extends Component {
           showProgress={false}
           title="Here's a hint"
           message={hint}
-          closeOnTouchOutside={true}
+          closeOnTouchOutside={false}
           closeOnHardwareBackPress={false}
           showCancelButton={false}
           showConfirmButton={true}
           confirmText="OK, got it!"
           confirmButtonColor="#3AAFb9"
-          onCancelPressed={() => {
-            this.hideHint();
-          }}
           onConfirmPressed={() => {
-            this.hideHint();
+            this.handleHideHint();
           }}
         />
         <AwesomeAlert
