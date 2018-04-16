@@ -26,7 +26,7 @@ export default class Login extends Component <Props> {
     return (
       <View style={styles.container}>
         <Text style={styles.logoText}>
-          ESPEAK
+          eSpeak
         </Text>
         <Image  style={styles.logo}
                 source={{ uri: logo }}/>
@@ -109,11 +109,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     padding: 10,
     borderRadius: 8,
-    width: 150,
+    width: 200,
   },
   loginBtn: {
     display: 'flex',
-    width: 150,
+    width: 200,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#3AAFB9',
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     margin: 10,
-    width: 150,
+    width: 200,
     height: 25,
   }
 });
