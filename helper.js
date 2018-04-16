@@ -8,6 +8,5 @@ export const verbAndParse = async (verb, url, data) => {
     method: `${verb}`
   });
   const userData = await initialFetch.json()
-  console.log(userData);
   return userData;
 };

@@ -87,9 +87,10 @@ export default class RNFirebase {
     return {
       signOut: () => true,
       signInWithEmailAndPassword: (email, password) => {
-        return {
-          uid: 12345
-        }
+        return [{
+          uid: 12345,
+          email: 'pophus@notpophanda.com',
+        }]
       },
       createUserWithEmailAndPassword: (email, password) => {
         return {
