@@ -173,6 +173,7 @@ exports[`WordCards handleCardLoad should return current card if there are cards 
           "borderColor": "#3AAFB9",
           "fontSize": 20,
           "margin": 15,
+          "marginBottom": 25,
           "padding": 5,
           "width": 250,
         }
@@ -180,9 +181,13 @@ exports[`WordCards handleCardLoad should return current card if there are cards 
       value=""
     />
     <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
+      accessibilityComponentType="button"
+      accessibilityLabel="Do you need a hint?"
+      accessibilityTraits={
+        Array [
+          "button",
+        ]
+      }
       accessible={true}
       collapsable={undefined}
       hasTVPreferredFocus={undefined}
@@ -198,35 +203,41 @@ exports[`WordCards handleCardLoad should return current card if there are cards 
       onStartShouldSetResponder={[Function]}
       style={
         Object {
-          "backgroundColor": "#3AAFB9",
-          "borderRadius": 8,
-          "marginTop": 10,
           "opacity": 1,
-          "padding": 10,
-          "shadowColor": "#979797",
-          "shadowOffset": Object {
-            "height": 2,
-            "width": 2,
-          },
-          "shadowOpacity": 0.7,
-          "shadowRadius": 4,
         }
       }
       testID={undefined}
       tvParallaxProperties={undefined}
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
+      <View
         style={
-          Object {
-            "color": "#FFF",
-          }
+          Array [
+            Object {},
+          ]
         }
       >
-        Need a hint?
-      </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={undefined}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "color": "#007AFF",
+                "fontSize": 18,
+                "padding": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "color": "#1E3888",
+              },
+            ]
+          }
+        >
+          Need a hint? (-5 pts)
+        </Text>
+      </View>
     </View>
     <View
       accessibilityComponentType={undefined}
@@ -247,9 +258,10 @@ exports[`WordCards handleCardLoad should return current card if there are cards 
       onStartShouldSetResponder={[Function]}
       style={
         Object {
+          "alignItems": "center",
           "backgroundColor": "#3AAFB9",
           "borderRadius": 8,
-          "marginTop": 10,
+          "marginTop": 25,
           "opacity": 1,
           "padding": 10,
           "shadowColor": "#979797",
@@ -259,6 +271,7 @@ exports[`WordCards handleCardLoad should return current card if there are cards 
           },
           "shadowOpacity": 0.7,
           "shadowRadius": 4,
+          "width": 220,
         }
       }
       testID={undefined}
