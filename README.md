@@ -25,7 +25,7 @@ This project was developed using using Jest and Enzyme testing utilities. To run
 
 `npm test` to test the back end
 
-`jest` to test the front end
+`npm run jest-test` to test the front end
 
 ## Contributors
 
