@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Platform, Image, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import AwesomeAlert from 'react-native-awesome-alerts';
 import firebase from 'react-native-firebase';
@@ -17,7 +17,7 @@ const routeConfig = {
   Settings: {
     screen: Settings
   },
-}
+};
 
 const navConfig = {
   tabBarOptions: {
@@ -34,7 +34,7 @@ const navConfig = {
       marginVertical: 10,
     },
   }
-}
+};
 
 const RootNav = TabNavigator(routeConfig, navConfig);
 
@@ -137,14 +137,14 @@ export default class App extends React.Component {
     try {
       const initialFetch = await fetch(`https://espeak-be-opa.herokuapp.com/api/v1/users/${userId}`);
       const user = await initialFetch.json();
-
+      
       this.setState({ user: user[0], loading: false });
     } catch (error) {
       this.setState({
         showAlert: true,
-        alertMsg: `Invalid user name or password.`,
+        alertMsg: 'Invalid user name or password.',
         loading: false
-      })
+      });
     }
   }
 
@@ -176,14 +176,14 @@ export default class App extends React.Component {
       const newUser = {
         name: userName,
         email: email,
-        points: "0",
+        points: '0',
         stack_id: 1,
         firebase_id: uid
       };
 
       const url = 'https://espeak-be-opa.herokuapp.com/api/v1/users/';
-      const user = await verbAndParse('POST', url, newUser);
-      newUser.points = parseInt(newUser.points)
+      verbAndParse('POST', url, newUser);
+      newUser.points = parseInt(newUser.points);
       this.setState({ user: newUser, loading: false });
     } catch (error) {
       this.setState({
@@ -197,16 +197,15 @@ export default class App extends React.Component {
   showCondition = () => {
     if (this.state.user) {
       return <RootNav
-                screenProps={{
-                  user: this.state.user,
-                  handleSignOut: this.handleSignOut,
-                  userPoints: this.state.user.points,
-                  handlePoints: this.handlePoints,
-                  handleHintPoints: this.handleHintPoints,
-                  updateUser: this.updateUser,
-                  decks: this.state.decks,
-                }}
-              />
+        screenProps={{
+          user: this.state.user,
+          handleSignOut: this.handleSignOut,
+          userPoints: this.state.user.points,
+          handlePoints: this.handlePoints,
+          handleHintPoints: this.handleHintPoints,
+          updateUser: this.updateUser,
+          decks: this.state.decks,
+        }} />;
     } else {
       return (
         <View style={styles.container}>
@@ -217,7 +216,7 @@ export default class App extends React.Component {
           <AwesomeAlert
             show={this.state.showAlert}
             showProgress={false}
-            title={`Uh oh! There's a problem!`}
+            title={'Uh oh! There is a problem!'}
             message={this.state.alertMsg}
             closeOnTouchOutside={true}
             closeOnHardwareBackPress={false}
@@ -228,12 +227,12 @@ export default class App extends React.Component {
             onConfirmPressed={() => {
               this.hideAlert();
             }}/>
-            <AwesomeAlert 
-              show={this.state.loading}
-              showProgress={true}
-            />
+          <AwesomeAlert 
+            show={this.state.loading}
+            showProgress={true}
+          />
         </View>
-      )
+      );
     }
   }
 
