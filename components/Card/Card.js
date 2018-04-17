@@ -29,7 +29,7 @@ export default class Card extends Component {
   }
 
   handleChange = (text) => {
-    this.setState({answer: text});
+    this.setState({ answer: text });
   }
 
   handleHideHint = () => {
@@ -46,7 +46,6 @@ export default class Card extends Component {
     } else {
       this.showAlert();
     }
-
     this.setState({ answer: '' });
   }
 
