@@ -73,7 +73,7 @@ export default class Card extends Component {
           onPress={this.showHint}
           style={styles.hintBtn}
           title='Need a hint? (-5 pts)'
-          color='#3AAFB9'
+          color='#1E3888'
           accessibilityLabel='Do you need a hint?'
         />
         <TouchableOpacity
@@ -153,11 +153,11 @@ const styles = StyleSheet.create({
   },
   hintBtn: {
     fontSize: 16,
-    marginVertical: 30,
   },
   spanInput: {
     fontSize: 20,
     margin: 15,
+    marginBottom: 25,
     borderBottomWidth: 2,
     borderColor: '#3AAFB9',
     padding: 5,
@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 10,
     borderRadius: 8,
-    marginTop: 10,
+    marginTop: 25,
     shadowColor: '#979797',
     shadowOpacity: 0.7,
     shadowOffset: { width: 2, height: 2 },
