@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { TouchableOpacity, StyleSheet, Text, View, TextInput } from 'react-native';
 import AwesomeAlert from 'react-native-awesome-alerts';
 
-type Props = {};
 export default class Card extends Component {
   constructor() {
     super();
@@ -10,15 +9,15 @@ export default class Card extends Component {
       answer: '',
       showAlert: false,
       showHint: false,
-    }
+    };
   }
 
   showAlert = () => {
-    this.setState({ showAlert: true })
+    this.setState({ showAlert: true });
   }
 
   hideAlert =() => {
-    this.setState({ showAlert: false })
+    this.setState({ showAlert: false });
   }
 
   showHint = () => {
@@ -26,15 +25,15 @@ export default class Card extends Component {
   }
 
   hideHint = () => {
-    this.setState({ showHint: false })
+    this.setState({ showHint: false });
   }
 
   handleChange = (text) => {
-    this.setState({answer: text})
+    this.setState({answer: text});
   }
-  
+
   handleHideHint = () => {
-    this.props.onHintPoints();    
+    this.props.onHintPoints();
     this.hideHint();
   }
 
@@ -52,20 +51,20 @@ export default class Card extends Component {
   }
 
   render() {
-    const { english, spanish, hint } = this.props.word;
+    const { english, hint } = this.props.word;
     const { showAlert, showHint } = this.state;
 
     return (
       <View style={styles.container}>
         <Text style={styles.question}>How do you say...</Text>
         <View style={styles.engCard}>
-        {
-        this.props &&
-          <Text style={styles.engText}>{ english.toUpperCase() }</Text>
-        }
+          {
+            this.props &&
+            <Text style={styles.engText}>{ english.toUpperCase() }</Text>
+          }
         </View>
         <Text style={styles.question}>in Spanish?</Text>
-        <TextInput 
+        <TextInput
           placeholder='Type word in Spanish'
           onChangeText={(text) => this.handleChange(text)}
           value={this.state.answer}
@@ -76,13 +75,13 @@ export default class Card extends Component {
           style={styles.submitBtn}
         >
           <Text style={styles.btnText}>Need a hint?</Text>
-        </TouchableOpacity> 
+        </TouchableOpacity>
         <TouchableOpacity
           onPress={() => this.handleSubmit()}
           style={styles.submitBtn}
         >
           <Text style={styles.btnText}>SUBMIT</Text>
-        </TouchableOpacity> 
+        </TouchableOpacity>
         <AwesomeAlert
           show={showHint}
           showProgress={false}
@@ -118,7 +117,7 @@ export default class Card extends Component {
           }}
         />
       </View>
-    )
+    );
   }
 }
 
