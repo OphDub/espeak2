@@ -7,6 +7,9 @@ before_script:
 - psql -c 'CREATE DATABASE espeak_test;' -U postgres
 script:
 - npm run jest-test
+env:
+  global:
+    - secure: "G7XWWAfLJK81ukU4Fk0uG24JX/ZajJ5Z+MOW1CLELYHRdNd0nOBMrd0HezuPlfgDDEHLHTwJ3+BflWOE37EUJxoWWPKvjFzRoR+1MtFp+9Be3ypne4T5QI3vANtv9N5rPUpAlAqXlZGboMJDoZ0xVcJIlSilUpDEtPfaPmzaRkbSj+697f2r8sgSO8Ih03vlp4sC1/rjQ7K9QyjOAC3sc1IxXbIuEKVVKwcQvKR1nBngr5E1n+Ng6J1wsDj/QKEQiUB/8Gvi8vhPMihbdoIy1XU9K3V3fa3wnP5YvxIf17a11cjIIa34NizPJ1z/xuzBf1UVPqrWAfRcuzQzYXbxBrLbEFoyH+QsngMQZzrJi9uuf/bT8VO4F9NWtg3c6F/hVpQZmLqV0zz2qBpfqOmSDUW8FlXkI9JWs174zAzgWTvL8tTUzcuY/3qH4/BebyZGfIr3RDJJbwJbe1HXnSPXA3uy1ld/aGNi2sIu/RUH9vBLBG6UASdeKyogwQops3YhtvgQPshjrhDJ2Xe5NVMrpBkPPUCCDQoPLDqPcMWgYdKcnOrh7mZhLOPd6Yjj6i4CfYO3WtOo+Mca5T6kiHTXlTQUtRonw17z6KVP7IsbA+2zz7z4/G/09SOqIjlpS/60rvPqjpgCJWFWbedY3h/5IpFwdpOLwRQtWCf0CbNmQBk="
 notification:
 - email: false
 deploy:
