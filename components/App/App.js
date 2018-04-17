@@ -38,7 +38,6 @@ const navConfig = {
 
 const RootNav = TabNavigator(routeConfig, navConfig);
 
-
 firebase.initializeApp(config);
 
 const auth = firebase.auth();
