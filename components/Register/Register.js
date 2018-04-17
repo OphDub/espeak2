@@ -5,11 +5,10 @@ import {
   Text,
   View,
   TextInput,
-  Button,
   TouchableOpacity,
 } from 'react-native';
 import AwesomeAlert from 'react-native-awesome-alerts';
-const logo = `https://i.imgur.com/ana1fGy.png`;
+const logo = 'https://i.imgur.com/ana1fGy.png';
 
 type Props = {};
 export default class Register extends Component <Props>{
@@ -22,7 +21,7 @@ export default class Register extends Component <Props>{
       confirmPassword: '',
       showAlert: false,
       alertMsg: '',
-    }
+    };
   }
 
   validateRegistration = () => {
@@ -37,13 +36,13 @@ export default class Register extends Component <Props>{
     let alertMsg;
 
     if (email === '' || userName === '') {
-      alertMsg = `Please provide a email and username.`;
+      alertMsg = 'Please provide a email and username.';
       return this.setState({ showAlert: true, alertMsg });
     } else if (password === '' || confirmPassword === '') {
-      alertMsg = `Please add a password.`;
+      alertMsg = 'Please add a password.';
       return this.setState({ showAlert: true, alertMsg });
     } else if (password !== confirmPassword) {
-      alertMsg = `Please make sure your passwords match.`;
+      alertMsg = 'Please make sure your passwords match.';
       return this.setState({ showAlert: true, alertMsg });
     }
 
@@ -61,8 +60,9 @@ export default class Register extends Component <Props>{
   render() {
     return (
       <View style={styles.container}>
-        <Image  style={styles.logo}
-                source={{ uri: logo }}/>
+        <Image
+          style={styles.logo}
+          source={{ uri: logo }}/>
         <Text style={styles.joinText}>Join eSpeak and learn Spanish!</Text>
         <TextInput
           style={styles.input}
@@ -94,12 +94,14 @@ export default class Register extends Component <Props>{
         <TouchableOpacity
           onPress={() => this.props.toggleRegistration() }
           style={styles.loginBtn}>
-            <Text>Have account? Login</Text>
+          <Text>
+            Have an account? Login
+          </Text>
         </TouchableOpacity>
         <AwesomeAlert
           show={this.state.showAlert}
           showProgress={false}
-          title={`Uh oh! There's a problem with your registration!`}
+          title={'Uh oh! There is a problem with your registration!'}
           message={this.state.alertMsg}
           closeOnTouchOutside={true}
           closeOnHardwareBackPress={false}
@@ -112,7 +114,7 @@ export default class Register extends Component <Props>{
           }}
         />
       </View>
-    )
+    );
   }
 }
 
