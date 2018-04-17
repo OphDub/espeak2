@@ -25,6 +25,7 @@
     "rename": "node ./bin/rename.js",
     "start": "react-native start",
     "test": "NODE_ENV=test mocha --exit",
+    "jest-test": "jest --findRelatedTests __tests__/*.js",
     "eslint": "./node_modules/.bin/eslint "
   },
   "jest": {
