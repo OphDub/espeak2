@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import {
-  Button,
-  FlatList,
-  Platform,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -14,13 +11,13 @@ import Progress from '../Progress/Progress';
 type Props = {};
 export default class WordCards extends Component<Props> {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       stack: this.props.navigation.state.params,
       words: [],
       currentCardId: 0,
       isFinished: false,
-    }
+    };
   }
   static navigationOptions = {
     title: 'translations'
@@ -35,14 +32,15 @@ export default class WordCards extends Component<Props> {
       }
 
       return {...word, isCurrent: false, isCompleted: false};
-    })
+    });
 
-    this.setState({ words })
+    this.setState({ words });
   }
 
   getDeck = async (deckId) => {
     try {
-    const promise = await fetch(`https://espeak-be.herokuapp.com/api/v1/words/${deckId}`)
+      const promise = await fetch(`https://espeak-be.herokuapp.com/api/v1/words/${deckId}`);
+
       if (promise.status > 226) {
         throw new Error('We could not find your deck!');
       } else {
@@ -60,7 +58,7 @@ export default class WordCards extends Component<Props> {
 
     const currentCard = this.state.words.find(card => card.isCurrent === true);
     const { handleHintPoints } = this.props.screenProps;
-    
+
     if (!currentCard) {
       return (
         <View style={styles.endMsgCont}>
@@ -72,14 +70,14 @@ export default class WordCards extends Component<Props> {
             <Text style={styles.homeBtnText}>BACK TO MY DECKS</Text>
           </TouchableOpacity>
         </View>
-      )
+      );
     }
 
     return <Card
       word={currentCard}
       onCorrectAnswer={this.handleCorrectAnswer}
       onHintPoints={ handleHintPoints }
-    />
+    />;
   }
 
   handleCorrectAnswer = (word) => {
@@ -87,9 +85,9 @@ export default class WordCards extends Component<Props> {
     let isFinished = wordIndex === this.state.words.length - 1;
     const words = this.state.words.map((word, index) => {
       if (index === wordIndex) {
-        return {...word, isCurrent: false}
+        return {...word, isCurrent: false};
       } else if (index === (wordIndex + 1)) {
-        return {...word, isCurrent: true}
+        return {...word, isCurrent: true};
       }
 
       return word;
@@ -108,7 +106,6 @@ export default class WordCards extends Component<Props> {
   }
 
   render() {
-    const { params } = this.props.navigation.state;
     const { userPoints } = this.props.screenProps;
 
     return (
