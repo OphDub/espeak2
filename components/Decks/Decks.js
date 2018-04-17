@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import {
-  Button,
-  FlatList,
-  Platform,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -16,7 +13,7 @@ export default class Decks extends Component<Props> {
   };
 
   navigateToCards(deck) {
-    this.props.navigation.navigate('WordCards', deck)
+    this.props.navigation.navigate('WordCards', deck);
   }
 
   render() {
@@ -28,10 +25,10 @@ export default class Decks extends Component<Props> {
           {decks.map( (deck, index) => {
             const { stack_id }  = this.props.screenProps.user;
             const isActive = deck.id <= stack_id;
-            const deckStyle = isActive ? styles.deck : styles.disabled
+            const deckStyle = isActive ? styles.deck : styles.disabled;
 
             return (
-              <TouchableOpacity 
+              <TouchableOpacity
                 onPress={() => this.navigateToCards(deck)}
                 disabled={!isActive}
                 value={deck.id}
@@ -41,11 +38,11 @@ export default class Decks extends Component<Props> {
                   {deck.category}
                 </Text>
               </TouchableOpacity>
-            )
+            );
           })}
         </View>
       </View>
-    )
+    );
   }
 }
 
@@ -80,7 +77,7 @@ const styles = StyleSheet.create({
   },
   deckText: {
     fontSize: 20,
-    color: "white",
+    color: 'white',
     textAlign: 'center',
     margin: 10,
   },
