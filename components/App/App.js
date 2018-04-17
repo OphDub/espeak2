@@ -114,9 +114,9 @@ export default class App extends React.Component {
     this.setState({ loading: true });
 
     try {
-      const user = await auth.signInWithEmailAndPassword(email, password);
+      const firebaseInfo = await auth.signInAndRetrieveDataWithEmailAndPassword(email, password);
 
-      await this.beLogin(user.uid);
+      await this.beLogin(firebaseInfo.user.uid);
     } catch (error) {
       this.setState({
         showAlert: true,
