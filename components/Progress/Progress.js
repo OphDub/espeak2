@@ -3,18 +3,11 @@ import {
   View,
   StyleSheet,
   Text
- } from 'react-native';
+} from 'react-native';
 
  type Props = {};
 
 export default class Progress extends Component<Props> {
-  constructor(props) {
-    super(props)
-    this.state = {
-      total: 100,
-    }
-  }
-
   styleBar = (currentStatus) => {
     let percentComplete = (currentStatus/this.props.wordTotal) * 100;
     return {
@@ -24,7 +17,7 @@ export default class Progress extends Component<Props> {
       borderRadius: 2,
       borderColor: '#F5E663',
       borderLeftWidth: 2
-    }
+    };
   }
 
   render() {
@@ -44,7 +37,7 @@ export default class Progress extends Component<Props> {
           {category}: {this.styleBar(this.props.currentCardId).width}
         </Text>
       </View>
-    )
+    );
   }
 }
 

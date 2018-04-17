@@ -191,7 +191,7 @@ exports[`REGISTER renders correctly 1`] = `
       allowFontScaling={true}
       ellipsizeMode="tail"
     >
-      Have account? Login
+      Have an account? Login
     </Text>
   </View>
 </View>

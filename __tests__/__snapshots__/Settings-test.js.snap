@@ -75,7 +75,8 @@ exports[`SETTINGS renders correctly 1`] = `
         }
       }
     >
-      Current Level: beginner
+      Current Level: 
+      1
     </Text>
   </View>
   <View

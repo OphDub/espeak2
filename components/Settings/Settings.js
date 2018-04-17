@@ -10,20 +10,15 @@ import {
 type Props = {};
 
 export default class Home extends Component <Props> {
-  constructor(props) {
-    super(props)
-    this.state = {}
-  }
-
   render() {
-    const {name, points, stack} = this.props.screenProps.user;
+    const { name, points, stack_id } = this.props.screenProps.user;
     const { handleSignOut } = this.props.screenProps;
     return (
       <View style={styles.container}>
         <View style={styles.statsDisplay}>
           <Text style={styles.listItems}>Username: {name}</Text>
           <Text style={styles.listItems}>Current Points: {points}</Text>
-          <Text style={styles.listItems}>Current Level: beginner</Text>
+          <Text style={styles.listItems}>Current Level: {stack_id}</Text>
         </View>
         <TouchableOpacity
           onPress={() => handleSignOut()}
@@ -32,7 +27,7 @@ export default class Home extends Component <Props> {
           <Text style={styles.buttonText}>LOGOUT</Text>
         </TouchableOpacity>
       </View>
-    )
+    );
   }
 }
 

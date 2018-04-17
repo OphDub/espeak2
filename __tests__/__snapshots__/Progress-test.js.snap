@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`it renders when a new stack is passed in as props 1`] = `
+exports[`PROGRESS it renders when a new stack is passed in as props 1`] = `
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
@@ -534,7 +534,7 @@ ShallowWrapper {
 }
 `;
 
-exports[`it renders when a new stack is passed in as props 2`] = `
+exports[`PROGRESS it renders when a new stack is passed in as props 2`] = `
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
@@ -1068,7 +1068,7 @@ ShallowWrapper {
 }
 `;
 
-exports[`renders correctly 1`] = `
+exports[`PROGRESS renders correctly 1`] = `
 <View
   style={
     Object {
