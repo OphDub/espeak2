@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, StyleSheet, Text, View, TextInput } from 'react-native';
+import { Button, TouchableOpacity, StyleSheet, Text, View, TextInput } from 'react-native';
 import AwesomeAlert from 'react-native-awesome-alerts';
 
 export default class Card extends Component {
@@ -69,12 +69,13 @@ export default class Card extends Component {
           value={this.state.answer}
           style={styles.spanInput}
         />
-        <TouchableOpacity
-          onPress={() => this.showHint()}
-          style={styles.submitBtn}
-        >
-          <Text style={styles.btnText}>Need a hint?</Text>
-        </TouchableOpacity>
+        <Button 
+          onPress={this.showHint}
+          style={styles.hintBtn}
+          title='Need a hint? (-5 pts)'
+          color='#3AAFB9'
+          accessibilityLabel='Do you need a hint?'
+        />
         <TouchableOpacity
           onPress={() => this.handleSubmit()}
           style={styles.submitBtn}
@@ -150,6 +151,10 @@ const styles = StyleSheet.create({
     color: '#1E3888',
     fontSize: 25,
   },
+  hintBtn: {
+    fontSize: 16,
+    marginVertical: 30,
+  },
   spanInput: {
     fontSize: 20,
     margin: 15,
@@ -160,6 +165,7 @@ const styles = StyleSheet.create({
   },
   submitBtn: {
     backgroundColor: '#3AAFB9',
+    alignItems: 'center',
     padding: 10,
     borderRadius: 8,
     marginTop: 10,
@@ -167,5 +173,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.7,
     shadowOffset: { width: 2, height: 2 },
     shadowRadius: 4,
+    width: 220,
   }
 });
