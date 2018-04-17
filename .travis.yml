@@ -4,7 +4,7 @@ node_js:
 services:
 - postgresql
 before_install:
-- openssl aes-256-cbc -K $encrypted_0a6446eb3ae3_key -iv $encrypted_0a6446eb3ae3_iv -in super_secret.txt.enc -out super_secret.txt -d
+- openssl aes-256-cbc -K $encrypted_cba52484e397_key -iv $encrypted_cba52484e397_iv -in fbconfig.js.enc -out fbconfig.js -d
 before_script:
 - psql -c 'CREATE DATABASE espeak_test;' -U postgres
 script:
