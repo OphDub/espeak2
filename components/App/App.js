@@ -121,8 +121,8 @@ export default class App extends React.Component {
     } catch (error) {
       this.setState({
         showAlert: true,
-        alertMsg:error.message,
-        loaing: false
+        alertMsg: error.message,
+        loading: false
       });
     }
   }
@@ -180,8 +180,8 @@ export default class App extends React.Component {
         stack_id: 1,
         firebase_id: uid
       };
-
       const url = 'https://espeak-be-opa.herokuapp.com/api/v1/users/';
+
       verbAndParse('POST', url, newUser);
       newUser.points = parseInt(newUser.points);
       this.setState({ user: newUser, loading: false });
@@ -195,8 +195,8 @@ export default class App extends React.Component {
   }
 
   showCondition = () => {
-    if (this.state.user) {
-      return <RootNav
+   return this.state.user ?
+      <RootNav
         screenProps={{
           user: this.state.user,
           handleSignOut: this.handleSignOut,
@@ -205,36 +205,34 @@ export default class App extends React.Component {
           handleHintPoints: this.handleHintPoints,
           updateUser: this.updateUser,
           decks: this.state.decks,
-        }} />;
-    } else {
-      return (
-        <View style={styles.container}>
-          <Login
-            handleLogin={this.handleLogin}
-            handleRegistration={this.handleRegistration}
-            beRegistration={this.beRegistration}/>
-          <AwesomeAlert
-            show={this.state.showAlert}
-            showProgress={false}
-            title={'Uh oh! There is a problem!'}
-            message={this.state.alertMsg}
-            closeOnTouchOutside={true}
-            closeOnHardwareBackPress={false}
-            showCancelButton={false}
-            showConfirmButton={true}
-            confirmText="OK"
-            confirmButtonColor="#3AAFb9"
-            onConfirmPressed={() => {
-              this.hideAlert();
-            }}/>
-          <AwesomeAlert 
-            show={this.state.loading}
-            showProgress={true}
-          />
-        </View>
-      );
+        }} 
+      /> 
+      :
+      <View style={styles.container}>
+        <Login
+          handleLogin={this.handleLogin}
+          handleRegistration={this.handleRegistration}
+          beRegistration={this.beRegistration}/>
+        <AwesomeAlert
+          show={this.state.showAlert}
+          showProgress={false}
+          title={'Uh oh! There is a problem!'}
+          message={this.state.alertMsg}
+          closeOnTouchOutside={true}
+          closeOnHardwareBackPress={false}
+          showCancelButton={false}
+          showConfirmButton={true}
+          confirmText="OK"
+          confirmButtonColor="#3AAFb9"
+          onConfirmPressed={() => {
+            this.hideAlert();
+          }}/>
+        <AwesomeAlert 
+          show={this.state.loading}
+          showProgress={true}
+        />
+      </View>
     }
-  }
 
   render() {
     return (

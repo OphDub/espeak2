@@ -32,7 +32,6 @@ export default class Register extends Component <Props>{
       confirmPassword,
     } = this.state;
     const user = { email, userName, password };
-
     let alertMsg;
 
     if (email === '' || userName === '') {
