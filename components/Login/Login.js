@@ -5,11 +5,10 @@ import {
   Text,
   View,
   TextInput,
-  Button,
   TouchableOpacity,
 } from 'react-native';
 import Register from '../Register/Register';
-const logo = `https://i.imgur.com/ana1fGy.png`;
+const logo = 'https://i.imgur.com/ana1fGy.png';
 
 type Props = {};
 export default class Login extends Component <Props> {
@@ -28,8 +27,9 @@ export default class Login extends Component <Props> {
         <Text style={styles.logoText}>
           eSpeak
         </Text>
-        <Image  style={styles.logo}
-                source={{ uri: logo }}/>
+        <Image
+          style={styles.logo}
+          source={{ uri: logo }}/>
         <TextInput
           style={styles.input}
           value={this.state.email}
@@ -42,25 +42,30 @@ export default class Login extends Component <Props> {
           onChangeText={(password) => this.setState({ password })}
           placeholder="password"/>
         <TouchableOpacity
-          onPress={(email, password) => this.props.handleLogin(this.state.email, this.state.password)}
+          onPress={() => this.props.handleLogin(this.state.email, this.state.password)}
           style={styles.loginBtn}>
-            <Text style={styles.loginBtnText}>LOGIN</Text>
+          <Text style={styles.loginBtnText}>
+            LOGIN
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => this.toggleRegistration()}
           style={styles.registerBtn}>
-            <Text>New? Register here</Text>
+          <Text>
+            New? Register here
+          </Text>
         </TouchableOpacity>
       </View>
-    )
+    );
   }
 
   renderRegister = () => {
     return (
-      <Register handleRegistration={this.props.handleRegistration}
-                toggleRegistration={this.toggleRegistration}
-                beRegistration={this.props.beRegistration}/>
-    )
+      <Register
+        handleRegistration={this.props.handleRegistration}
+        toggleRegistration={this.toggleRegistration}
+        beRegistration={this.props.beRegistration}/>
+    );
   }
 
   renderView = () => {
@@ -72,9 +77,9 @@ export default class Login extends Component <Props> {
     const { toggleRegister } = this.state;
 
     if(!toggleRegister) {
-      this.setState({ toggleRegister: true })
+      this.setState({ toggleRegister: true });
     } else {
-      this.setState({ toggleRegister: false })
+      this.setState({ toggleRegister: false });
     }
   }
 
@@ -83,7 +88,7 @@ export default class Login extends Component <Props> {
       <View style={styles.container}>
         { this.renderView() }
       </View>
-    )
+    );
   }
 }
 

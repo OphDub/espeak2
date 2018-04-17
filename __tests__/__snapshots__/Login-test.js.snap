@@ -379,7 +379,7 @@ exports[`LOGIN LOGIN METHODS should render different jsx based on toggleRegistra
         allowFontScaling={true}
         ellipsizeMode="tail"
       >
-        Have account? Login
+        Have an account? Login
       </Text>
     </View>
   </View>
