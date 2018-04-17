@@ -6,7 +6,7 @@ services:
 before_script:
 - psql -c 'CREATE DATABASE espeak_test;' -U postgres
 script:
-- npm run jest-test
+- npm run jest-test -- -u
 notification:
 - email: false
 deploy:
