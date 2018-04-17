@@ -21,7 +21,7 @@ Clone down the repo:
 
 ## Tests
 
-This project was developed using using Jest and Enzyme testing utilities. To run the test suites for this project:
+This project was developed using using Jest, Enzyme, Mocha, and Chai testing utilities. To run the test suites for this project:
 
 `npm test` to test the back end
 
