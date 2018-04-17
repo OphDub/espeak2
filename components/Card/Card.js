@@ -42,7 +42,7 @@ export default class Card extends Component {
     const { answer } = this.state;
     const { onCorrectAnswer, word } = this.props;
     const { spanish } = word;
-    if (answer.toLowerCase() === spanish) {
+    if (answer.toLowerCase() === spanish.toLowerCase()) {
       onCorrectAnswer(word);
     } else {
       this.showAlert();

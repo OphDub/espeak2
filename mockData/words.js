@@ -42,111 +42,111 @@ const words = [
     stack_id: 2
   },
   {
-    english: 'I am fine.',
-    spanish: 'Estoy bien.',
-    hint: 'coh-mo eh-stas',
+    english: 'I am fine',
+    spanish: 'Estoy bien',
+    hint: 'eh-stoy bee-in',
     stack_id: 2
   },
   {
     english: 'What is your name?',
-    spanish: 'Como se llama?',
-    hint: 'coh-mo eh-stas',
+    spanish: 'Como te llamas?',
+    hint: 'coh-mo teh ya-mahs',
     stack_id: 2
   },
   {
-    english: 'Me llamo Bob',
-    spanish: 'My name is Bob.',
-    hint: 'coh-mo eh-stas',
+    english: 'My name is Bob',
+    spanish: 'Me llamo Bob',
+    hint: 'meh, yamo bob',
     stack_id: 2
   },
   {
     english: 'apple',
-    spanish: 'manzana',
-    hint: 'coh-mo eh-stas',
+    spanish: 'la manzana',
+    hint: 'lah mahn-zah-na',
     stack_id: 3
   },
   {
     english: 'banana',
-    spanish: 'platano',
-    hint: 'coh-mo eh-stas',
+    spanish: 'el platano',
+    hint: 'el plah-ta-no',
     stack_id: 3
   },
   {
     english: 'pepper',
-    spanish: 'pimiento',
-    hint: 'coh-mo eh-stas',
+    spanish: 'el pimiento',
+    hint: 'el pee-mi-ehn-to',
     stack_id: 3
   },
   {
     english: 'orange',
-    spanish: 'naranja',
-    hint: 'coh-mo eh-stas',
+    spanish: 'la naranja',
+    hint: 'lah nar-ahn-ha',
     stack_id: 3
   },
   {
     english: 'cucumber',
-    spanish: 'pepino',
-    hint: 'coh-mo eh-stas',
+    spanish: 'el pepino',
+    hint: 'ehl peh-pee-no',
     stack_id: 3
   },
   {
     english: 'breakfast',
-    spanish: 'desayuno',
-    hint: 'coh-mo eh-stas',
+    spanish: 'el desayuno',
+    hint: 'el des-ai-oo-no',
     stack_id: 4
   },
   {
     english: 'lunch',
-    spanish: 'almuerzo',
-    hint: 'coh-mo eh-stas',
+    spanish: 'el almuerzo',
+    hint: 'ehl all-mu-ehr-zo',
     stack_id: 4
   },
   {
     english: 'dinner',
-    spanish: 'cena',
-    hint: 'coh-mo eh-stas',
+    spanish: 'la cena',
+    hint: 'lah ce-nah',
     stack_id: 4
   },
   {
     english: 'plate',
-    spanish: 'plato',
-    hint: 'coh-mo eh-stas',
+    spanish: 'el plato',
+    hint: 'ehl plah-to',
     stack_id: 4
   },
   {
     english: 'food',
-    spanish: 'comida',
-    hint: 'coh-mo eh-stas',
+    spanish: 'la comida',
+    hint: 'lah coh-mee-dah',
     stack_id: 4
   },
   {
     english: 'dance',
     spanish: 'bailar',
-    hint: 'coh-mo eh-stas',
+    hint: 'buy-lahr',
     stack_id: 5
   },
   {
     english: 'run',
     spanish: 'correr',
-    hint: 'coh-mo eh-stas',
+    hint: 'cohr-rer',
     stack_id: 5
   },
   {
     english: 'walk',
     spanish: 'caminar',
-    hint: 'coh-mo eh-stas',
+    hint: 'cah-mee-nahr',
     stack_id: 5
   },
   {
     english: 'jump',
     spanish: 'saltar',
-    hint: 'coh-mo eh-stas',
+    hint: 'sal-tar',
     stack_id: 5
   },
   {
     english: 'eat',
     spanish: 'comer',
-    hint: 'coh-mo eh-stas',
+    hint: 'coh-mehr',
     stack_id: 5
   }
 ] 
