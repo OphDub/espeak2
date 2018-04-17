@@ -8,7 +8,14 @@ import Login from '../Login/Login';
 import Settings from '../Settings/Settings';
 import WordStackNav from '../WordStackNav/WordStackNav';
 import { verbAndParse } from '../../helper';
-import config from '../../fbconfig';
+import {
+  fireBaseApiKey,
+  fireBaseAuthDomain,
+  fireBaseDatabaseURL,
+  fireBaseProjectId,
+  fireBaseStorageBucket,
+  fireBaseMessagingSenderId
+} from '../../fbconfig';
 
 const routeConfig = {
   Decks: {
@@ -37,7 +44,14 @@ const navConfig = {
 };
 
 const RootNav = TabNavigator(routeConfig, navConfig);
-
+const config = {
+  apiKey: fireBaseApiKey,
+  authDomain: fireBaseAuthDomain,
+  databaseURL: fireBaseDatabaseURL,
+  projectId: fireBaseProjectId,
+  storageBucket: fireBaseStorageBucket,
+  messagingSenderId: fireBaseMessagingSenderId
+};
 
 firebase.initializeApp(config);
 
