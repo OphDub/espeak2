@@ -11,7 +11,7 @@ import AwesomeAlert from 'react-native-awesome-alerts';
 import PropTypes from 'prop-types';
 const logo = 'https://i.imgur.com/ana1fGy.png';
 
-export default class Register extends Component <Props>{
+export default class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {

@@ -10,7 +10,7 @@
             "experimentalObjectRestSpread": true,
             "jsx": true
         },
-        "allowImportExportEverywhere": false,            
+        "allowImportExportEverywhere": false,
         "sourceType": "module",
         "codeFrame": false
     },
@@ -19,6 +19,7 @@
     ],
     "rules": {
         "react/jsx-uses-vars": 2,
+        "no-unused-vars": 0,
         "indent": [
             "error",
             2

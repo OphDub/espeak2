@@ -193,8 +193,8 @@ export default class App extends React.Component {
   }
 
   showCondition = () => {
-   return this.state.user ?
-      <RootNav
+    return this.state.user ?
+      (<RootNav
         screenProps={{
           user: this.state.user,
           handleSignOut: this.handleSignOut,
@@ -204,9 +204,9 @@ export default class App extends React.Component {
           updateUser: this.updateUser,
           decks: this.state.decks,
         }} 
-      /> 
+      />) 
       :
-      <View style={styles.container}>
+      (<View style={styles.container}>
         <Login
           handleLogin={this.handleLogin}
           handleRegistration={this.handleRegistration}
@@ -229,8 +229,8 @@ export default class App extends React.Component {
           show={this.state.loading}
           showProgress={true}
         />
-      </View>
-    }
+      </View>);
+  }
 
   render() {
     return (

@@ -14,7 +14,7 @@ const routeConfig = {
 };
 const RootNav = StackNavigator(routeConfig);
 
-export default class WordStackNav extends Component<Props> {
+export default class WordStackNav extends Component {
   render() {
     const {
       handlePoints,

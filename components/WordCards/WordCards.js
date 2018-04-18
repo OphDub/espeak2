@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import Card from '../Card/Card';
 import Progress from '../Progress/Progress';
 
-export default class WordCards extends Component<Props> {
+export default class WordCards extends Component {
   constructor(props) {
     super(props);
     this.state = {
