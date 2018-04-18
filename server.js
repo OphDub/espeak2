@@ -26,7 +26,13 @@ app.get('/api/v1/users/:id', (request, response) => {
 
   database('users').where('firebase_id', id).select()
     .then( user => {
-      response.status(200).json(user)
+      if (!user.length) {
+        response.status(404).json({
+          error: `User with id: ${id}, not found.`
+        });
+      } else {
+        response.status(200).json(user);
+      }
     })
     .catch( error => {
       response.status(500).json({ error })
@@ -39,10 +45,10 @@ app.patch('/api/v1/users/:id', (request, response) => {
 
   database('users').where('firebase_id', id).update(userPatch)
     .then( user => {
-      if ( user ) {
-        response.status(200).json({ id });
-      } else {
+      if (!user) {
         response.status(404).json({ error: `No user with ${id} to update` });
+      } else {
+        response.status(200).json({ id });
       }
     })
     .catch( error => {
@@ -83,7 +89,13 @@ app.get('/api/v1/words/:stack_id', (request, response) => {
   const { stack_id } = request.params;
   database('words').where('stack_id', stack_id).select()
   .then( words => {
-    response.status(200).json(words)
+    if (!words.length) {
+      response.status(404).json({
+        error: `No stack with ${stack_id} found`
+      });
+    } else {
+      response.status(200).json(words)
+    }
   })
   .catch( error => {
     response.status(500).json({ error });
@@ -105,7 +117,13 @@ app.get('/api/v1/stack/:id', (request, response) => {
 
   database('stack').where('id', id).select()
   .then( stack => {
-    response.status(200).json(stack);
+    if (!stack.length) {
+      response.status(404).json({
+        error: `No stack with ${id} found`
+      });
+    } else {
+      response.status(200).json(stack);
+    }
   })
   .catch( error => {
     response.status(500).json({error})
