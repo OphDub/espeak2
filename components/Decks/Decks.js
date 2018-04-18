@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import {
+  Image,
   StyleSheet,
   Text,
   TouchableOpacity,
   View
 } from 'react-native';
 import PropTypes from 'prop-types';
+
+const logo = 'https://i.imgur.com/ana1fGy.png';
 
 export default class Decks extends Component {
   static navigationOptions = {
@@ -21,6 +24,9 @@ export default class Decks extends Component {
 
     return (
       <View style={styles.container}>
+        <Image
+          style={styles.logo}
+          source={{ uri: logo }}/>
         <View style={styles.deckList}>
           {decks.map( (deck, index) => {
             const { stack_id }  = this.props.screenProps.user;
@@ -85,6 +91,12 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
     margin: 10,
+  },
+  logo: {
+    width: 100,
+    height: 100,
+    margin: 10,
+    marginVertical: 50,
   },
 });
 
