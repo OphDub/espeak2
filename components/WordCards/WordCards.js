@@ -5,10 +5,10 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
+import PropTypes from 'prop-types';
 import Card from '../Card/Card';
 import Progress from '../Progress/Progress';
 
-type Props = {};
 export default class WordCards extends Component<Props> {
   constructor(props) {
     super(props);
@@ -121,6 +121,11 @@ export default class WordCards extends Component<Props> {
     );
   }
 }
+
+WordCards.propTypes = {
+  screenProps: PropTypes.object,
+  navigation: PropTypes.object
+};
 
 const styles = StyleSheet.create({
   container: {

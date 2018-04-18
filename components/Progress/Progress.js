@@ -4,8 +4,7 @@ import {
   StyleSheet,
   Text
 } from 'react-native';
-
- type Props = {};
+import PropTypes from 'prop-types';
 
 export default class Progress extends Component<Props> {
   styleBar = (currentStatus) => {
@@ -22,7 +21,7 @@ export default class Progress extends Component<Props> {
 
   render() {
     const { category } = this.props.stack;
-
+ 
     return (
       <View style={styles.container}>
         <View style={styles.pointsWrapper}>
@@ -40,6 +39,13 @@ export default class Progress extends Component<Props> {
     );
   }
 }
+
+Progress.propTypes = {
+  stack: PropTypes.object,
+  currentCardId: PropTypes.number,
+  userPoints: PropTypes.number,
+  wordTotal: PropTypes.number
+};
 
 const styles = StyleSheet.create({
   container: {

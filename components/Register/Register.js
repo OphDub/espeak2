@@ -8,9 +8,9 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import AwesomeAlert from 'react-native-awesome-alerts';
+import PropTypes from 'prop-types';
 const logo = 'https://i.imgur.com/ana1fGy.png';
 
-type Props = {};
 export default class Register extends Component <Props>{
   constructor(props) {
     super(props);
@@ -116,6 +116,11 @@ export default class Register extends Component <Props>{
     );
   }
 }
+
+Register.propTypes = {
+  handleRegistration: PropTypes.func,
+  toggleRegistration: PropTypes.func
+};
 
 const styles = StyleSheet.create({
   container: {
