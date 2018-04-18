@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-
 import {
   Text,
   View,
   StyleSheet,
   TouchableOpacity
 } from 'react-native';
-
-type Props = {};
+import PropTypes from 'prop-types';
 
 export default class Home extends Component <Props> {
   render() {
@@ -30,6 +28,10 @@ export default class Home extends Component <Props> {
     );
   }
 }
+
+Home.propTypes = {
+  screenProps: PropTypes.object
+};
 
 const styles = StyleSheet.create({
   container: {

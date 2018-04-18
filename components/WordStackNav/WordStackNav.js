@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation';
+import PropTypes from 'prop-types';
 import Decks from '../Decks/Decks';
 import WordCards from '../WordCards/WordCards';
 
@@ -13,7 +14,6 @@ const routeConfig = {
 };
 const RootNav = StackNavigator(routeConfig);
 
-type Props = {};
 export default class WordStackNav extends Component<Props> {
   render() {
     const {
@@ -37,3 +37,7 @@ export default class WordStackNav extends Component<Props> {
     );
   }
 }
+
+WordStackNav.propTypes = {
+  screenProps: PropTypes.object
+};
