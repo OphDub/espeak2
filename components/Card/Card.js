@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, TouchableOpacity, StyleSheet, Text, View, TextInput } from 'react-native';
+import PropTypes from 'prop-types';
 import AwesomeAlert from 'react-native-awesome-alerts';
 
 export default class Card extends Component {
@@ -119,6 +120,12 @@ export default class Card extends Component {
       </View>
     );
   }
+}
+
+Card.propTypes = {
+  word: PropTypes.object,
+  onCorrectAnswer: PropTypes.func,
+  onHintPoints: PropTypes.func,
 }
 
 const styles = StyleSheet.create({
