@@ -9,10 +9,6 @@ const database = require('knex')(configuration);
 
 chai.use(chaiHttp);
 
-// describe('Client Routes', () => {
-
-// });
-
 describe('API Routes', () => {
   beforeEach((done) => {
     database.migrate.rollback()
@@ -66,10 +62,22 @@ describe('API Routes', () => {
         response.body[0].stack_id.should.equal(1);
       })
     })
+
+    it('should return an error with status of 404 if the user is not found', () => {
+      const invalidUserId = `928ur0j2imn09j0f2f`;
+
+      return chai.request(server)
+      .get(`/api/v1/users/${invalidUserId}`)
+      .then( response => {
+        response.should.have.status(404);
+        response.should.be.json;
+        response.body.error.should.equal(`User with id: ${invalidUserId}, not found.`)
+      })
+    })
   })
 
   describe('PATCH /api/v1/users/:id', () => {
-    it('should update the users points and', () => {
+    it('should update the user', () => {
       const userFbId = 'KZ5xIaj7eQOOP4fD3sGXbXYIIN22';
 
       return chai.request(server)
@@ -80,6 +88,21 @@ describe('API Routes', () => {
       .then( response => {
         response.should.have.status(200);
         response.should.be.json;
+      })
+    })
+
+    it('should return an error with status of 404 is the user is not found', () => {
+      const invalidUserId = `928ur0j2imn09j0f2f`;
+
+      return chai.request(server)
+      .patch(`/api/v1/users/${invalidUserId}`)
+      .send({
+        points: 50
+      })
+      .then( response => {
+        response.should.have.status(404);
+        response.should.be.json;
+        response.body.error.should.equal(`No user with ${invalidUserId} to update`)
       })
     })
   })
@@ -96,9 +119,30 @@ describe('API Routes', () => {
         firebase_id: 'KZ8xIaj7eQOOP4fD3sGXbXYIIN25'
       })
       .then( response => {
-        response.should.have.status(202);
+        response.should.have.status(201);
         response.should.be.json;
         response.body.user[0].should.equal(2)
+      })
+    })
+
+    it('should return an error with status 422 if the user is missing info', () => {
+      const incompleteUser = {
+        name: 'pophus',
+        stack_id: 1,
+        points: 1,
+        firebase_id: 'KZ8xIaj7eQOOP4fD3sGXbXYIIN25'
+      };
+      const missingParam = 'email';
+
+      return chai.request(server)
+      .post('/api/v1/users')
+      .send(incompleteUser)
+      .then( response => {
+        response.should.have.status(422);
+        response.should.be.json;
+        response.body.error.should.equal(
+          `Expected format: {name: <String>, email: <String>, stack_id: <Number>, 'firebase_id': <String>, 'points': <Number> } You're missing a ${missingParam}.`
+        )
       })
     })
   })
@@ -133,6 +177,18 @@ describe('API Routes', () => {
         response.body[0].stack_id.should.equal(1);
       })
     })
+
+    it('should return an error with status 404 if the stack id cannot be found', () => {
+      const invalidStackId = 23;
+
+      return chai.request(server)
+      .get(`/api/v1/words/${invalidStackId}`)
+      .then( response => {
+        response.should.have.status(404);
+        response.should.be.json;
+        response.body.error.should.equal(`No stack with ${invalidStackId} found`)
+      });
+    })
   });
 
   describe('GET /api/v1/stack', () => {
@@ -161,6 +217,17 @@ describe('API Routes', () => {
         response.body[0].id.should.equal(1);
       })
     })
-  })
 
+    it('should return an error with status 404 if the stack id cannot be found', () => {
+      const invalidStackId = 1080;
+
+      return chai.request(server)
+      .get(`/api/v1/stack/${invalidStackId}`)
+      .then( response => {
+        response.should.have.status(404);
+        response.should.be.json;
+        response.body.error.should.equal(`No stack with ${invalidStackId} found`);
+      });
+    })
+  })
 });
