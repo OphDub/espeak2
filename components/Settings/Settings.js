@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 
-export default class Home extends Component <Props> {
+export default class Home extends Component {
   render() {
     const { name, points, stack_id } = this.props.screenProps.user;
     const { handleSignOut } = this.props.screenProps;

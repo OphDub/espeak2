@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 
-export default class Decks extends Component<Props> {
+export default class Decks extends Component {
   static navigationOptions = {
     title: 'Decks',
   };
