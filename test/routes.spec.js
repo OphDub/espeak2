@@ -9,10 +9,6 @@ const database = require('knex')(configuration);
 
 chai.use(chaiHttp);
 
-// describe('Client Routes', () => {
-
-// });
-
 describe('API Routes', () => {
   beforeEach((done) => {
     database.migrate.rollback()
@@ -66,10 +62,14 @@ describe('API Routes', () => {
         response.body[0].stack_id.should.equal(1);
       })
     })
+
+    it('should return an error with status of 403 if the user is not found', () => {
+
+    })
   })
 
   describe('PATCH /api/v1/users/:id', () => {
-    it('should update the users points and', () => {
+    it('should update the user', () => {
       const userFbId = 'KZ5xIaj7eQOOP4fD3sGXbXYIIN22';
 
       return chai.request(server)
@@ -81,6 +81,10 @@ describe('API Routes', () => {
         response.should.have.status(200);
         response.should.be.json;
       })
+    })
+
+    it('should return an error with status of 403 is the user is not found', () => {
+
     })
   })
 
@@ -96,10 +100,14 @@ describe('API Routes', () => {
         firebase_id: 'KZ8xIaj7eQOOP4fD3sGXbXYIIN25'
       })
       .then( response => {
-        response.should.have.status(202);
+        response.should.have.status(201);
         response.should.be.json;
         response.body.user[0].should.equal(2)
       })
+    })
+
+    it('should return an error with status 403 if the user is missing info', () => {
+
     })
   })
 
@@ -133,6 +141,10 @@ describe('API Routes', () => {
         response.body[0].stack_id.should.equal(1);
       })
     })
+
+    it('should return an error with status 404 if the stack id cannot be found', () => {
+
+    })
   });
 
   describe('GET /api/v1/stack', () => {
@@ -161,6 +173,9 @@ describe('API Routes', () => {
         response.body[0].id.should.equal(1);
       })
     })
-  })
 
+    it('should return an error with status 404 if the stack id cannot be found', () => {
+
+    })
+  })
 });
