@@ -8,9 +8,9 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Register from '../Register/Register';
+import PropTypes from 'prop-types';
 const logo = 'https://i.imgur.com/ana1fGy.png';
 
-type Props = {};
 export default class Login extends Component <Props> {
   constructor(props) {
     super(props);
@@ -91,6 +91,12 @@ export default class Login extends Component <Props> {
     );
   }
 }
+
+Login.propTypes = {
+  handleRegistration: PropTypes.func,
+  handleLogin: PropTypes.func,
+  beRegistration: PropTypes.func
+};
 
 const styles = StyleSheet.create({
   logo: {

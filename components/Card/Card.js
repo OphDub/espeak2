@@ -125,8 +125,8 @@ export default class Card extends Component {
 Card.propTypes = {
   word: PropTypes.object,
   onCorrectAnswer: PropTypes.func,
-  onHintPoints: PropTypes.func,
-}
+  onHintPoints: PropTypes.func
+};
 
 const styles = StyleSheet.create({
   container: {

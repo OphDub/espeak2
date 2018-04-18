@@ -5,8 +5,8 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
+import PropTypes from 'prop-types';
 
-type Props = {};
 export default class Decks extends Component<Props> {
   static navigationOptions = {
     title: 'Decks',
@@ -45,6 +45,11 @@ export default class Decks extends Component<Props> {
     );
   }
 }
+
+Decks.propTypes = {
+  navigation: PropTypes.object,
+  screenProps: PropTypes.object
+};
 
 const styles = StyleSheet.create({
   container: {
