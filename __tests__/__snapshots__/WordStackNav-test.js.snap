@@ -83,6 +83,21 @@ exports[`WORD STACK NAV renders correctly 1`] = `
             }
           }
         >
+          <Image
+            source={
+              Object {
+                "uri": "https://i.imgur.com/ana1fGy.png",
+              }
+            }
+            style={
+              Object {
+                "height": 100,
+                "margin": 10,
+                "marginVertical": 50,
+                "width": 100,
+              }
+            }
+          />
           <View
             style={
               Object {

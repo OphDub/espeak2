@@ -151,8 +151,13 @@ exports[`REGISTER renders correctly 1`] = `
       accessible={true}
       allowFontScaling={true}
       ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#ffffff",
+        }
+      }
     >
-      Register
+      REGISTER
     </Text>
   </View>
   <View
