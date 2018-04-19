@@ -88,7 +88,9 @@ export default class Register extends Component {
         <TouchableOpacity
           style={styles.registerBtn}
           onPress={() => this.validateRegistration() }>
-          <Text>Register</Text>
+          <Text style={styles.loginText}>
+            REGISTER
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => this.props.toggleRegistration() }
@@ -159,6 +161,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.7,
     shadowOffset: { width: 2, height: 2 },
     shadowRadius: 4,
+  },
+  loginText: {
+    color: '#ffffff'
   },
   loginBtn: {
     display: 'flex',

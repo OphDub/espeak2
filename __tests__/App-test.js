@@ -92,7 +92,7 @@ describe('App', () => {
         username: 'pophus',
         email: 'pophus@notpophanda.com',
         points: 0,
-        stack_id: 1,
+        stack_id: 6,
         firebase_id: 12345
       };
       global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
@@ -105,7 +105,7 @@ describe('App', () => {
       await inst.handleLogin('pophus', 'password');
 
       expect(inst.state.loading).toEqual(false);
-      expect(inst.state.user).toEqual({ "email": "pophus@notpophanda.com", "firebase_id": 12345, "points": 0, "stack_id": 1, "username": "pophus" })
+      expect(inst.state.user).toEqual({ "email": "pophus@notpophanda.com", "firebase_id": 12345, "points": 0, "stack_id": 6, "username": "pophus" })
     })
 
     it('beLogin call fetch and update the user in state', async () => {
@@ -149,7 +149,7 @@ describe('App', () => {
       expect(inst.state.user).toEqual(null);
     })
 
-    it('handleRegestration should do call beRegistration and update states user to the newly created user', async () => {
+    it.only('handleRegistration should call beRegistration and update states user to the newly created user', async () => {
       global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
         status: 200,
         json: () =>  Promise.resolve({user: 'pophus' } )
@@ -158,8 +158,8 @@ describe('App', () => {
       const inst = wrapper.getInstance();
 
       await inst.handleRegistration({email: 'pophus@notpophanda.com', userName: 'pophus long', password: 'password', uid: 54321});
-      
-      expect(inst.state.user).toEqual({"email": "pophus@notpophanda.com", "firebase_id": 54321, "name": "pophus long", "points": 0, "stack_id": 1 })
+
+      expect(inst.state.user).toEqual({"email": "pophus@notpophanda.com", "firebase_id": 54321, "name": "pophus long", "points": 0, "stack_id": 6 })
     })
   })
 
