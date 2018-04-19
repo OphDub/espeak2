@@ -181,7 +181,7 @@ export default class App extends React.Component {
       };
       const url = 'https://espeak-be-opa.herokuapp.com/api/v1/users/';
 
-      const thing = await verbAndParse('POST', url, newUser);
+      verbAndParse('POST', url, newUser);
 
       newUser.points = parseInt(newUser.points);
       this.setState({ user: newUser, loading: false });

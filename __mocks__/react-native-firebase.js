@@ -100,9 +100,10 @@ export default class RNFirebase {
       },
       createUserAndRetrieveDataWithEmailAndPassword: (email, password) => {
         return {
-          uid: 54321,
-          email: 'pophus@notpophanda.com',
-
+          user: {
+            uid: 54321,
+            email: 'pophus@notpophanda.com',
+          }
         }
       }
     }
