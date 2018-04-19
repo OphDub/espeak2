@@ -115,6 +115,7 @@ export default class App extends React.Component {
 
     try {
       const firebaseInfo = await auth.signInAndRetrieveDataWithEmailAndPassword(email, password);
+
       await this.beLogin(firebaseInfo.user.uid);
     } catch (error) {
       this.setState({
@@ -135,7 +136,7 @@ export default class App extends React.Component {
     try {
       const initialFetch = await fetch(`https://espeak-be-opa.herokuapp.com/api/v1/users/${userId}`);
       const user = await initialFetch.json();
-      
+
       this.setState({ user: user[0], loading: false });
     } catch (error) {
       this.setState({
@@ -156,9 +157,9 @@ export default class App extends React.Component {
     this.setState({ loading: true });
 
     try {
-      const user = await auth.createUserWithEmailAndPassword(email, password);
+      const fbInfo = await auth.createUserAndRetrieveDataWithEmailAndPassword(email, password);
 
-      await this.beRegistration(user, userName);
+      await this.beRegistration(fbInfo.user, userName);
     } catch (error) {
       this.setState({
         showAlert: true,
@@ -175,12 +176,13 @@ export default class App extends React.Component {
         name: userName,
         email: email,
         points: '0',
-        stack_id: 1,
+        stack_id: 6,
         firebase_id: uid
       };
       const url = 'https://espeak-be-opa.herokuapp.com/api/v1/users/';
 
-      verbAndParse('POST', url, newUser);
+      const thing = await verbAndParse('POST', url, newUser);
+
       newUser.points = parseInt(newUser.points);
       this.setState({ user: newUser, loading: false });
     } catch (error) {
