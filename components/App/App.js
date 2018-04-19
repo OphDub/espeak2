@@ -24,7 +24,7 @@ const navConfig = {
     labelStyle: {
       fontSize: 22,
     },
-    activeTintColor: '#F5E663',
+    activeTintColor: '#3D3B3E',
     activeBackgroundColor: '#CFAAF1',
     inactiveTintColor: 'white',
     style: {
