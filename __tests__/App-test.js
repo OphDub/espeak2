@@ -159,7 +159,7 @@ describe('App', () => {
 
       await inst.handleRegistration({email: 'pophus@notpophanda.com', userName: 'pophus long', password: 'password', uid: 54321});
 
-      expect(inst.state.user).toEqual({"email": "pophus@notpophanda.com", "firebase_id": 54321, "name": "pophus long", "points": 0, "stack_id": 6 })
+      expect(inst.state.user).toEqual({"email": "pophus@notpophanda.com", "firebase_id": 54321, "name": "pophus long", "points": 0, "stack_id": 1 })
     })
   })
 
