@@ -8,7 +8,7 @@ before_install:
 before_script:
 - psql -c 'CREATE DATABASE espeak_test;' -U postgres
 script:
-- npm run jest-test -- -u
+- npm run jest-test
 - npm test
 notification:
 - email: false
