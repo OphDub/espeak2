@@ -76,7 +76,7 @@ describe('WordCards', () => {
       expect(response).resolves.toEqual(expected);
     });
 
-    it('should console error an error if fetch fails', () => {
+    it('should return an error an error if fetch fails', () => {
       global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
         status: 500
       }));
