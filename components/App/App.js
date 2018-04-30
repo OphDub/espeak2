@@ -176,7 +176,7 @@ export default class App extends React.Component {
         name: userName,
         email: email,
         points: '0',
-        stack_id: 6,
+        stack_id: 1,
         firebase_id: uid
       };
       const url = 'https://espeak-be-opa.herokuapp.com/api/v1/users/';
